@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="register">
+        <form action="/user/create" method="post">
+            <input type="text" placeholder="Nombre"/> <input type="text" placeholder="Apellidos"/><br/>
+            @<input type="text" placeholder="Nombre de usuario"/><br/>
+            <button type="submit" value="submit">Register</button>
+        </form>
+    </template>
+
+</odoo>

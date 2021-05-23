@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="res_partner_view_tree" model="ir.ui.view">
+            <field name="name">res.partner.view.tree</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="id" invisible="1"/>
+                    <field name="display_name"/>
+                    <field name="email"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="res_partner_view_form" model="ir.ui.view">
+            <field name="name">res.partner.view.form</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Follow" name="follow_partner" type="object" class="oe_highlight" attrs="{'invisible':['|','|',('is_self','=',True),('is_company','=',True),('is_follower','=',True)]}"/>
+                        <button string="Unfollow" name="unfollow_partner" type="object" class="oe_highlight" attrs="{'invisible':['|','|',('is_self','=',True),('is_company','=',True),('is_follower','=',False)]}"/>
+                        <button string="Join" name="join_club" type="object" class="oe_highlight" attrs="{'invisible':['|','|',('is_self','=',True),('is_company','=',False),('is_member','=',True)]}"/>
+                        <button string="Leave" name="leave_club" type="object" class="oe_highlight" attrs="{'invisible':['|','|',('is_self','=',True),('is_company','=',False),('is_member','=',False)]}"/>
+                    </header>
+                    <sheet>
+                        <field name="id" invisible="1"/>
+                        <field name="is_self" invisible="1"/>
+                        <field name="is_following" invisible="1"/>
+                        <field name="is_follower" invisible="1"/>
+                        <field name="is_member" invisible="1"/>
+
+                        <div name="button_box" class="oe_button_box">
+                            <button name="open_follower_view" type="object" class="oe_stat_button" icon="fa-users" attrs="{'invisible':[('is_company','=',True)]}">
+                                <field name="follower_count" string="Followers" widget="statinfo"/>
+                            </button>
+                            <button name="open_following_view" type="object" class="oe_stat_button" icon="fa-users" attrs="{'invisible':[('is_company','=',True)]}">
+                                <field name="following_count" string="Following" widget="statinfo"/>
+                            </button>
+                            <button name="open_member_view" type="object" class="oe_stat_button" icon="fa-users" attrs="{'invisible':[('is_company','=',False)]}">
+                                <field name="member_count" string="Members" widget="statinfo"/>
+                            </button>
+                        </div>
+
+                        <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}"/>
+                        <div class="oe_title">
+                            <field name="company_type" widget="radio" class="oe_edit_only" options="{'horizontal': true}" readonly="1"/>
+                            <h1>
+                                <field name="name" default_focus="1" placeholder="Name"/>
+                            </h1>
+                            <div class="o_row">
+                                <field name="is_company" invisible="1"/>
+                                <field name="parent_id" widget="res_partner_many2one" placeholder="Company" domain="[('is_company', '=', True)]" attrs="{'invisible':[('is_company','=',True)]}"/>
+                            </div>
+                        </div>
+                        <group>
+                            <group attrs="{'invisible':[('is_company','=',False)]}">
+                                <label for="street" string="Address"/>
+                                <div class="o_address_format">
+                                    <field name="street" placeholder="Street..." class="o_address_street"/>
+                                    <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                    <field name="city" placeholder="City" class="o_address_city"/>
+                                    <field name="state_id" class="o_address_state" placeholder="State" options="{&quot;no_open&quot;: True}" context="{'country_id': country_id, 'zip': zip}"/>
+                                    <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                    <field name="country_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"/>
+                                </div>
+                                <field name="vat" placeholder="e.g. BE0477472701"/>
+                            </group>
+                            <group>
+                                <field name="phone" widget="phone"/>
+                                <field name="user_ids" invisible="1"/>
+                                <field name="email" widget="email" context="{'gravatar_image': True}" attrs="{'required': [('user_ids','!=', [])]}"/>
+                                <field name="website" widget="url"/>
+                                <field name="category_id" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" placeholder="Tags..."/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="comments" string="Description">
+                                <field name="comment"/>
+                            </page>
+                            <page name="employees" string="Employees" attrs="{'invisible':[('is_company','=',False)]}">
+                                <field name="child_ids" mode="kanban">
+                                    <kanban create="false">
+                                        <field name="id"/>
+                                        <field name="title"/>
+                                        <field name="color"/>
+                                        <field name="name"/>
+                                        <field name="email"/>
+                                        <field name="is_company"/>
+                                        <field name="image_small"/>
+                                        <templates>
+                                            <t t-name="kanban-box">
+                                                <t t-set="color" t-value="kanban_color(record.color.raw_value)"/>
+                                                <div t-att-class="color + (record.title.raw_value == 1 ? ' oe_kanban_color_alert' : '') + ' oe_kanban_global_click'">
+                                                    <div class="o_kanban_image">
+                                                        <img alt="" t-if="record.image_small.raw_value" t-att-src="kanban_image('res.partner', 'image_small', record.id.raw_value)"/>
+                                                        <t t-if="!record.image_small.raw_value">
+                                                            <t t-if="record.type.raw_value !== 'invoice' &amp;&amp; record.type.raw_value !== 'delivery'">
+                                                                <img alt="Avatar" t-if="record.is_company.raw_value === false" t-att-src="_s + &quot;/base/static/img/avatar.png&quot;"/>
+                                                            </t>
+                                                        </t>
+                                                    </div>
+                                                    <div class="oe_kanban_details">
+                                                        <field name="name"/>
+                                                        <div t-if="record.email.raw_value"><field name="email" widget="email"/></div>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </templates>
+                                    </kanban>  
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="res_partner_view_kanban" model="ir.ui.view">
+            <field name="name">res.partner.view.kanban</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="id"/>
+                    <field name="color"/>
+                    <field name="display_name"/>
+                    <field name="title"/>
+                    <field name="email"/>
+                    <field name="parent_id"/>
+                    <field name="is_company"/>
+                    <field name="function"/>
+                    <field name="phone"/>
+                    <field name="street"/>
+                    <field name="street2"/>
+                    <field name="zip"/>
+                    <field name="city"/>
+                    <field name="country_id"/>
+                    <field name="mobile"/>
+                    <field name="state_id"/>
+                    <field name="category_id"/>
+                    <field name="image_small"/>
+                    <field name="type"/>
+                    
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban">
+                                <t t-if="record.image_small.raw_value &amp;&amp; !record.is_company.raw_value">
+                                    <div class="o_kanban_image_fill_left d-none d-md-block" t-attf-style="background-image:url('#{kanban_image('res.partner', 'image_medium', record.id.raw_value)}')">
+                                        <img class="o_kanban_image_inner_pic" t-if="record.parent_id.raw_value" t-att-alt="record.parent_id.value" t-att-src="kanban_image('res.partner', 'image_small', record.parent_id.raw_value)"/>
+                                    </div>
+                                    <div class="o_kanban_image rounded-circle d-md-none" t-attf-style="background-image:url('#{kanban_image('res.partner', 'image_small', record.id.raw_value)}')">
+                                        <img class="o_kanban_image_inner_pic" t-if="record.parent_id.raw_value" t-att-alt="record.parent_id.value" t-att-src="kanban_image('res.partner', 'image_small', record.parent_id.raw_value)"/>
+                                    </div>
+                                </t>
+                                <t t-elif="record.image_small.raw_value &amp;&amp; record.is_company.raw_value">
+                                    <img class="o_kanban_image" t-att-src="kanban_image('res.partner', 'image_small', record.id.raw_value)" t-att-alt="record.display_name"/>
+                                </t>
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title oe_partner_heading"><field name="name"/></strong>
+                                    <div class="o_kanban_tags_section oe_kanban_partner_categories"/>
+                                    <ul>
+                                        <li t-if="record.parent_id.raw_value"><field name="parent_id"/></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="res_partner_view_search" model="ir.ui.view">
+            <field name="name">res.partner.view.search</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <filter name="users" string="Users" domain="[('company_type','=','person'),('gym_user_type','=','client')]"/>
+                    <filter name="trainers" string="Trainers" domain="[('company_type','=','person'),('gym_user_type','=','trainer')]"/>
+                    <separator/>
+                    <filter name="clubs" string="Clubs" domain="[('company_type','=','company'),('gym_company_type','=','club')]"/>
+                    <filter name="shops" string="Shops" domain="[('company_type','=','company'),('gym_company_type','=','shop')]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="res_partner_action" model="ir.actions.act_window">
+            <field name="name">Users</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_ids" eval="[(5,0,0),
+                (0,0,{'view_mode':'kanban', 'view_id':ref('gym_base.res_partner_view_kanban')}),
+                (0,0,{'view_mode':'tree', 'view_id':ref('gym_base.res_partner_view_tree')}),
+                (0,0,{'view_mode':'form', 'view_id':ref('gym_base.res_partner_view_form')})]"/>
+            <field name="search_view_id" ref="gym_base.res_partner_view_search" />
+        </record>
+
+        <record id="res_partner_profile_action_server" model="ir.actions.server">
+            <field name="name">Profile</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="state">code</field>
+            <field name="code">action = model.open_my_profile()</field>
+        </record>
+
+        <record id="res_partner_pass_recovery_action_server" model="ir.actions.server">
+            <field name="name">Recovery pass</field>
+            <field name="model_id" ref="model_res_partner"/>
+             <field name="binding_model_id" ref="model_res_partner"/>
+            <field name="state">code</field>
+            <field name="code">action = record.send_pass_recovery_mail()</field>
+        </record>
+        
+        <record id="res_partner_change_pass_action_server" model="ir.actions.server">
+            <field name="name">Change pass</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="binding_model_id" ref="model_res_partner"/>
+            <field name="state">code</field>
+            <field name="code">action = record.open_change_pass_wizard()</field>
+        </record>
+
+        <menuitem
+            id="res_partner_menu"
+            name="Users"
+            action="res_partner_action"
+            parent="gym_base.gym_menu"
+            sequence="20"/>
+
+        <menuitem
+            id="profile_menu"
+            name="Profile"
+            parent="gym_base.you_root_menu"
+            action="res_partner_profile_action_server"
+            sequence="10"/>
+    
+    </data>
+    
+
+</odoo>

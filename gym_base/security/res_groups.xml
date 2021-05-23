@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="gym_category" model="ir.module.category">
+        <field name="name">GYM</field>
+    </record>
+
+    <record id="group_gym_individual" model="res.groups">
+        <field name="name">Individual</field>
+        <field name="category_id" ref="gym_category"/>
+    </record>
+   
+    <record id="group_gym_company" model="res.groups">
+        <field name="name">Company</field>
+        <field name="category_id" ref="gym_category"/>
+        <field name="implied_ids" eval="[(4, ref('group_gym_individual'))]"/>
+    </record>
+
+    <record id="group_gym_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="gym_category"/>
+        <field name="implied_ids" eval="[(4, ref('group_gym_company'))]"/>
+    </record>
+
+</odoo>
