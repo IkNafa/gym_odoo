@@ -14,6 +14,7 @@
         'data/mail_template.xml',
         
         'security/res_groups.xml',
+        'security/ir_model_access.xml',
 
         'views/menus.xml',
         'views/res_partner_views.xml',

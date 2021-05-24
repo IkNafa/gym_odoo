@@ -4,6 +4,10 @@ from odoo.exceptions import ValidationError
 class ResPartner(models.Model):
     _inherit = 'res.partner'
     
+    gender = fields.Selection([('male','Male'),('female','Female'),('other','Other')], string="Gender")
+    birthday = fields.Date(string="Birthday")
+    age = fields.Integer(compute="_compute_age", string="Age")
+
     gym_user_type = fields.Selection([('client','Client'),('trainer','Trainer')])
     gym_company_type = fields.Selection([('club','Club'),('shop','Shop')])
 
@@ -21,6 +25,13 @@ class ResPartner(models.Model):
     follower_count = fields.Integer(compute="_compute_follower_count")
     following_count = fields.Integer(compute="_compute_following_count")
     member_count = fields.Integer(compute="_compute_member_count")
+
+    @api.depends('birthday')
+    def _compute_age(self):
+        today = fields.date.today()
+        for record in self:
+            if record.birthday:
+                record.age = today.year - record.birthday.year - ((today.month, today.day) < (record.birthday.month, record.birthday.day))
 
     def _compute_is_self(self):
         for record in self:
