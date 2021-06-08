@@ -8,8 +8,14 @@ class ResPartner(models.Model):
     birthday = fields.Date(string="Birthday")
     age = fields.Integer(compute="_compute_age", string="Age")
 
-    gym_user_type = fields.Selection([('client','Client'),('trainer','Trainer')])
-    gym_company_type = fields.Selection([('club','Club'),('shop','Shop')])
+    child_ids = fields.One2many(domain=[('active', '=', True),('is_company','=',False),('gym_account_type','=','trainer')])
+
+    sponsor_id = fields.Many2one('res.partner', string="Sponsor", domain=[('active', '=', True),('is_company','=',True),('gym_account_type','=','shop')])
+    sponsored_ids = fields.One2many('res.partner', 'sponsor_id', string="Sponsored", domain=[('active', '=', True),('is_company','=',False),('gym_account_type','=','trainer')])
+
+    sponsor_code = fields.Char(string="Code")
+
+    gym_account_type = fields.Selection([('client','Client'),('trainer','Trainer'),('club','Club'),('shop','Shop')])
 
     follower_ids = fields.Many2many('res.partner','res_partner_follow_rel', 'following_id', 'follower_id')
     following_ids = fields.Many2many('res.partner','res_partner_follow_rel', 'follower_id', 'following_id')
@@ -17,10 +23,17 @@ class ResPartner(models.Model):
     club_ids = fields.Many2many('res.partner','res_partner_club_rel','member_id','club_id')
     member_ids = fields.Many2many('res.partner','res_partner_club_rel','club_id','member_id')
 
+    trainer_ids = fields.Many2many('res.partner','res_partner_client_trainer_rel','trainer_id','client_id')
+    client_ids = fields.Many2many('res.partner','res_partner_client_trainer_rel','client_id','trainer_id')
+
     is_self = fields.Boolean(compute="_compute_is_self")
     is_following = fields.Boolean(compute="_compute_is_following")
     is_follower = fields.Boolean(compute="_compute_is_follower")
     is_member = fields.Boolean(compute="_compute_is_member")
+    is_my_trainer = fields.Boolean(compute="_compute_is_my_trainer")
+    is_my_sponsor = fields.Boolean(compute="_compute_is_my_sponsor")
+    is_my_club = fields.Boolean(compute="_compute_is_my_club")
+    has_request = fields.Boolean(compute="_compute_has_request")
 
     follower_count = fields.Integer(compute="_compute_follower_count")
     following_count = fields.Integer(compute="_compute_following_count")
@@ -60,6 +73,22 @@ class ResPartner(models.Model):
     def _compute_member_count(self):
         for record in self:
             record.member_count = len(record.member_ids)
+    
+    def _compute_is_my_trainer(self):
+        for record in self:
+            record.is_my_trainer = self.env.user.partner_id.id in record.client_ids.ids
+    
+    def _compute_is_my_sponsor(self):
+        for record in self:
+            record.is_my_sponsor = self.env.user.partner_id.id == record.sponsor_id.id
+
+    def _compute_is_my_club(self):
+        for record in self:
+            record.is_my_club = self.env.user.partner_id.id == record.parent_id.id
+    
+    def _compute_has_request(self):
+        for record in self:
+            record.has_request = self.env['res.partner.request'].search_count([('from_id','=',self.env.user.partner_id.id),('to_id','=',self.id)]) > 0
 
     def send_pass_recovery_mail(self):
         template_id = self.env.ref('gym_base.password_recovery_email_template').id
@@ -69,22 +98,30 @@ class ResPartner(models.Model):
     def follow_partner(self):
         self.ensure_one()
         if not self.is_self:
-            self.follower_ids = [(4,self.env.user.partner_id.id)]
+            self.env.user.partner_id.write({
+                'following_ids':[(4,self.id)]
+            })
 
     def unfollow_partner(self):
         self.ensure_one()
         if not self.is_self:
-            self.follower_ids = [(3,self.env.user.partner_id.id)]
+            self.env.user.partner_id.write({
+                'following_ids':[(3,self.id)]
+            })
     
     def join_club(self):
         self.ensure_one()
         if not self.is_self:
-            self.member_ids = [(4,self.env.user.partner_id.id)]
+            self.env.user.partner_id.write({
+                'club_ids':[(4,self.id)]
+            })
     
     def leave_club(self):
         self.ensure_one()
         if not self.is_self:
-            self.member_ids = [(3,self.env.user.partner_id.id)]
+            self.env.user.partner_id.write({
+                'club_ids':[(3,self.id)]
+            })
 
     @api.model
     def open_my_profile(self):
@@ -130,12 +167,43 @@ class ResPartner(models.Model):
         action['domain'] = [('id','in',self.member_ids.ids)]
         return action
 
+    @api.model
+    def open_my_employees(self):
+        partner_id = self.env.user.partner_id
+        action = self.env.ref('gym_base.res_partner_action').read()[0]
+        if partner_id.gym_account_type == "shop":
+            action['domain'] = [('id','in',partner_id.sponsored_ids.ids)]
+        elif partner_id.gym_account_type == "club":
+            action['domain'] = [('id','in',partner_id.child_ids.ids)]
+        return action
+    
+    @api.model
+    def open_my_trainers(self):
+        partner_id = self.env.user.partner_id
+        action = self.env.ref('gym_base.res_partner_action').read()[0]
+        action['domain'] = [('id','in',partner_id.trainer_ids.ids)]
+        return action
+    
+    @api.model
+    def open_my_clients(self):
+        partner_id = self.env.user.partner_id
+        action = self.env.ref('gym_base.res_partner_action').read()[0]
+        action['domain'] = [('id','in',partner_id.client_ids.ids)]
+        return action
+
     @api.depends('is_company', 'name', 'parent_id.name', 'type', 'company_name')
     def _compute_display_name(self):
         for record in self:
             record.display_name = "@%s" % (self.env['res.users'].search([('partner_id','=',record.id)],limit=1).login or "-")
-        
-
+    
+    def send_request(self):
+        self.ensure_one()
+        self.env['res.partner.request'].create({
+            'date': fields.Datetime.now(),
+            'from_id': self.env.user.partner_id.id,
+            'to_id': self.id,
+            'type': self.gym_account_type or False,
+        })
 
 class ResPartnerFollowRel:
     _table = "res_partner_follow_rel"
@@ -148,3 +216,9 @@ class ResPartnerClubRel:
 
     member_id = fields.Many2one('res.partner', required=True)
     club_id = fields.Many2one('res.partner', required=True)
+
+class ResPartnerClientTrainerRel:
+    _table = "res_partner_client_trainer_rel"
+
+    client_id = fields.Many2one('res.partner', required=True, domain=[('is_company','=',False)])
+    trainer_id = fields.Many2one('res.partner', required=True, domain=[('is_company','=',False),('gym_account_type','=','trainer')])

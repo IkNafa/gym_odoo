@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_partner_request_view_tree" model="ir.ui.view">
+        <field name="name">res.partner.request.view.tree</field>
+        <field name="model">res.partner.request</field>
+        <field name="arch" type="xml">
+            <tree create="false">
+                <field name="date"/>
+                <field name="from_id"/>
+                <button name="accept" type="object" icon="fa-check" string="Accept"/>
+                <button name="decline" type="object" icon="fa-times" string="Decline"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="res_partner_request_action_server" model="ir.actions.server">
+        <field name="name">My requests</field>
+        <field name="model_id" ref="model_res_partner_request"/>
+        <field name="binding_model_id" ref="model_res_partner_request"/>
+        <field name="state">code</field>
+        <field name="code">action = model.open_my_requests()</field>
+    </record>
+
+    <menuitem
+        id="res_partner_request_menu"
+        name="My requests"
+        action="res_partner_request_action_server"
+        groups="gym_base.group_gym_trainer,gym_base.group_gym_company"
+        parent="you_root_menu"
+        sequence="100"/>
+
+</odoo>

@@ -7,7 +7,7 @@
             <field name="name">res.partner.view.tree</field>
             <field name="model">res.partner</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree create="false" delete="false">
                     <field name="id" invisible="1"/>
                     <field name="display_name"/>
                     <field name="email"/>
@@ -19,12 +19,15 @@
             <field name="name">res.partner.view.form</field>
             <field name="model">res.partner</field>
             <field name="arch" type="xml">
-                <form>
+                <form create="false" delete="false">
                     <header>
                         <button string="Follow" name="follow_partner" type="object" class="oe_highlight" attrs="{'invisible':['|','|',('is_self','=',True),('is_company','=',True),('is_follower','=',True)]}"/>
                         <button string="Unfollow" name="unfollow_partner" type="object" class="oe_highlight" attrs="{'invisible':['|','|',('is_self','=',True),('is_company','=',True),('is_follower','=',False)]}"/>
                         <button string="Join" name="join_club" type="object" class="oe_highlight" attrs="{'invisible':['|','|',('is_self','=',True),('is_company','=',False),('is_member','=',True)]}"/>
                         <button string="Leave" name="leave_club" type="object" class="oe_highlight" attrs="{'invisible':['|','|',('is_self','=',True),('is_company','=',False),('is_member','=',False)]}"/>
+                        <button string="Send trainer request" name="send_request" type="object" class="oe_highlight" attrs="{'invisible':['|','|','|','|',('is_self','=',True),('is_company','=',True),('is_my_trainer','=',True),('has_request','=',True),('gym_account_type','!=','trainer')]}" groups="gym_base.group_gym_individual"/>
+                        <button string="Send sponsor request" name="send_request" type="object" class="oe_highlight" attrs="{'invisible':['|','|','|','|',('is_self','=',True),('is_company','=',True),('is_my_sponsor','=',True),('has_request','=',True),('gym_account_type','!=','shop')]}" groups="gym_base.group_gym_trainer"/>
+                        <button string="Request sended" attrs="{'invisible':['|',('is_self','=',True),('has_request','=',False)]}"/>
                     </header>
                     <sheet>
                         <field name="id" invisible="1"/>
@@ -32,6 +35,10 @@
                         <field name="is_following" invisible="1"/>
                         <field name="is_follower" invisible="1"/>
                         <field name="is_member" invisible="1"/>
+                        <field name="is_my_trainer" invisible="1"/>
+                        <field name="is_my_sponsor" invisible="1"/>
+                        <field name="is_my_club" invisible="1"/>
+                        <field name="has_request" invisible="1"/>
 
                         <div name="button_box" class="oe_button_box">
                             <button name="open_follower_view" type="object" class="oe_stat_button" icon="fa-users" attrs="{'invisible':[('is_company','=',True)]}">
@@ -53,7 +60,9 @@
                             </h1>
                             <div class="o_row">
                                 <field name="is_company" invisible="1"/>
-                                <field name="parent_id" widget="res_partner_many2one" placeholder="Company" domain="[('is_company', '=', True)]" attrs="{'invisible':[('is_company','=',True)]}"/>
+                                <field name="gym_account_type" invisible="1" />
+                                <field name="parent_id" widget="res_partner_many2one" context="{'form_view_ref': 'gym_base.res_partner_view_form'}" placeholder="Club" domain="[('is_company', '=', True),('gym_account_type','=','club')]" attrs="{'invisible':['|',('is_company','=',True),('gym_account_type','!=','trainer')]}" readonly="1"/>
+                                <field name="sponsor_id" widget="res_partner_many2one" context="{'form_view_ref': 'gym_base.res_partner_view_form'}" placeholder="Sponsor" domain="[('is_company', '=', True),('gym_account_type','=','shop')]" attrs="{'invisible':['|',('is_company','=',True),('gym_account_type','!=','trainer')]}" readonly="1"/>
                             </div>
                         </div>
                         <group>
@@ -83,7 +92,7 @@
                                 <field name="comment"/>
                             </page>
                             <page name="employees" string="Employees" attrs="{'invisible':[('is_company','=',False)]}">
-                                <field name="child_ids" mode="kanban">
+                                <field name="child_ids" mode="kanban" context="{'form_view_ref': 'gym_base.res_partner_view_form'}">
                                     <kanban create="false">
                                         <field name="id"/>
                                         <field name="title"/>
@@ -124,7 +133,7 @@
             <field name="name">res.partner.view.kanban</field>
             <field name="model">res.partner</field>
             <field name="arch" type="xml">
-                <kanban class="o_res_partner_kanban">
+                <kanban class="o_res_partner_kanban" create="false">
                     <field name="id"/>
                     <field name="color"/>
                     <field name="display_name"/>
@@ -144,26 +153,23 @@
                     <field name="category_id"/>
                     <field name="image_small"/>
                     <field name="type"/>
+                    <field name="sponsor_code"/>
+                    <field name="sponsor_id"/>
                     
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban">
-                                <t t-if="record.image_small.raw_value &amp;&amp; !record.is_company.raw_value">
+                                <t t-if="record.image_small.raw_value">
                                     <div class="o_kanban_image_fill_left d-none d-md-block" t-attf-style="background-image:url('#{kanban_image('res.partner', 'image_medium', record.id.raw_value)}')">
                                         <img class="o_kanban_image_inner_pic" t-if="record.parent_id.raw_value" t-att-alt="record.parent_id.value" t-att-src="kanban_image('res.partner', 'image_small', record.parent_id.raw_value)"/>
                                     </div>
-                                    <div class="o_kanban_image rounded-circle d-md-none" t-attf-style="background-image:url('#{kanban_image('res.partner', 'image_small', record.id.raw_value)}')">
-                                        <img class="o_kanban_image_inner_pic" t-if="record.parent_id.raw_value" t-att-alt="record.parent_id.value" t-att-src="kanban_image('res.partner', 'image_small', record.parent_id.raw_value)"/>
-                                    </div>
-                                </t>
-                                <t t-elif="record.image_small.raw_value &amp;&amp; record.is_company.raw_value">
-                                    <img class="o_kanban_image" t-att-src="kanban_image('res.partner', 'image_small', record.id.raw_value)" t-att-alt="record.display_name"/>
                                 </t>
                                 <div class="oe_kanban_details">
                                     <strong class="o_kanban_record_title oe_partner_heading"><field name="name"/></strong>
                                     <div class="o_kanban_tags_section oe_kanban_partner_categories"/>
                                     <ul>
-                                        <li t-if="record.parent_id.raw_value"><field name="parent_id"/></li>
+                                        <li t-if="record.parent_id.raw_value">Club: <field name="parent_id"/></li>
+                                        <li t-if="record.sponsor_id.raw_value">Sponsor: <field name="sponsor_id"/> <a t-if="record.sponsor_code">[<field name="sponsor_code"/>]</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -179,11 +185,11 @@
             <field name="arch" type="xml">
                 <search>
                     <field name="name"/>
-                    <filter name="users" string="Users" domain="[('company_type','=','person'),('gym_user_type','=','client')]"/>
-                    <filter name="trainers" string="Trainers" domain="[('company_type','=','person'),('gym_user_type','=','trainer')]"/>
+                    <filter name="clients" string="Clients" domain="[('company_type','=','person'),('gym_account_type','=','client')]"/>
+                    <filter name="trainers" string="Trainers" domain="[('company_type','=','person'),('gym_account_type','=','trainer')]"/>
                     <separator/>
-                    <filter name="clubs" string="Clubs" domain="[('company_type','=','company'),('gym_company_type','=','club')]"/>
-                    <filter name="shops" string="Shops" domain="[('company_type','=','company'),('gym_company_type','=','shop')]"/>
+                    <filter name="clubs" string="Clubs" domain="[('company_type','=','company'),('gym_account_type','=','club')]"/>
+                    <filter name="shops" string="Shops" domain="[('company_type','=','company'),('gym_account_type','=','shop')]"/>
                 </search>
             </field>
         </record>
@@ -222,6 +228,51 @@
             <field name="state">code</field>
             <field name="code">action = record.open_change_pass_wizard()</field>
         </record>
+
+        <record id="res_partner_employees_action_server" model="ir.actions.server">
+            <field name="name">Employees</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="state">code</field>
+            <field name="code">action = model.open_my_employees()</field>
+        </record>
+
+        <record id="res_partner_clients_action_server" model="ir.actions.server">
+            <field name="name">Clients</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="state">code</field>
+            <field name="code">action = model.open_my_clients()</field>
+        </record>
+        
+        <record id="res_partner_trainers_action_server" model="ir.actions.server">
+            <field name="name">Trainers</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="state">code</field>
+            <field name="code">action = model.open_my_trainers()</field>
+        </record>
+
+        <menuitem
+            id="res_partner_trainers_menu"
+            name="My Trainers"
+            action="res_partner_trainers_action_server"
+            groups="gym_base.group_gym_individual"
+            parent="gym_base.you_root_menu"
+            sequence="98"/>
+
+        <menuitem
+            id="res_partner_clients_menu"
+            name="My clients"
+            action="res_partner_clients_action_server"
+            groups="gym_base.group_gym_trainer"
+            parent="gym_base.you_root_menu"
+            sequence="99"/>
+
+        <menuitem
+            id="res_partner_employees_menu"
+            name="My employees"
+            action="res_partner_employees_action_server"
+            groups="gym_base.group_gym_company"
+            parent="gym_base.you_root_menu"
+            sequence="99"/>
 
         <menuitem
             id="res_partner_menu"

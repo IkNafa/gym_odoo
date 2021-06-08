@@ -1,0 +1,188 @@
+<odoo>
+    <data noupdate="1">
+    
+        <record id="gym_dayofweek_monday" model="gym.dayofweek">
+            <field name="index">1</field>
+            <field name="name">Monday</field>
+            <field name="abbreviation">Mon</field>
+        </record>
+
+        <record id="gym_dayofweek_monday_name_ES" model="ir.translation">
+            <field name="name">gym.dayofweek,name</field>
+            <field name="type">model</field>
+            <field name="module">GYM-Odoo</field>
+            <field name="res_id" ref="gym_dayofweek_monday" />
+            <field name="lang">es_ES</field>
+            <field name="src">Monday</field>
+            <field name="value">Lunes</field>
+        </record>
+
+        <record id="gym_dayofweek_monday_abbreviation_ES" model="ir.translation">
+            <field name="name">gym.dayofweek,abbreviation</field>
+            <field name="type">model</field>
+            <field name="module">GYM-Odoo</field>
+            <field name="res_id" ref="gym_dayofweek_monday" />
+            <field name="lang">es_ES</field>
+            <field name="src">Mon</field>
+            <field name="value">Lun</field>
+        </record>
+
+        <record id="gym_dayofweek_tuesday" model="gym.dayofweek">
+            <field name="index">2</field>
+            <field name="name">Tuesday</field>
+            <field name="abbreviation">Tue</field>
+        </record>
+
+        <record id="gym_dayofweek_tuesday_name_ES" model="ir.translation">
+            <field name="name">gym.dayofweek,name</field>
+            <field name="type">model</field>
+            <field name="module">GYM-Odoo</field>
+            <field name="res_id" ref="gym_dayofweek_tuesday" />
+            <field name="lang">es_ES</field>
+            <field name="src">Tuesday</field>
+            <field name="value">Martes</field>
+        </record>
+
+        <record id="gym_dayofweek_tuesday_abbreviation_ES" model="ir.translation">
+            <field name="name">gym.dayofweek,abbreviation</field>
+            <field name="type">model</field>
+            <field name="module">GYM-Odoo</field>
+            <field name="res_id" ref="gym_dayofweek_tuesday" />
+            <field name="lang">es_ES</field>
+            <field name="src">Tue</field>
+            <field name="value">Mar</field>
+        </record>
+
+        <record id="gym_dayofweek_wednesday" model="gym.dayofweek">
+            <field name="index">3</field>
+            <field name="name">Wednesday</field>
+            <field name="abbreviation">Wed</field>
+        </record>
+
+        <record id="gym_dayofweek_wednesday_name_ES" model="ir.translation">
+            <field name="name">gym.dayofweek,name</field>
+            <field name="type">model</field>
+            <field name="module">GYM-Odoo</field>
+            <field name="res_id" ref="gym_dayofweek_wednesday" />
+            <field name="lang">es_ES</field>
+            <field name="src">Wednesday</field>
+            <field name="value">Miercoles</field>
+        </record>
+
+        <record id="gym_dayofweek_wednesday_abbreviation_ES" model="ir.translation">
+            <field name="name">gym.dayofweek,abbreviation</field>
+            <field name="type">model</field>
+            <field name="module">GYM-Odoo</field>
+            <field name="res_id" ref="gym_dayofweek_wednesday" />
+            <field name="lang">es_ES</field>
+            <field name="src">Wed</field>
+            <field name="value">Mie</field>
+        </record>
+
+        <record id="gym_dayofweek_thursday" model="gym.dayofweek">
+            <field name="index">4</field>
+            <field name="name">Thursday</field>
+            <field name="abbreviation">Thu</field>
+        </record>
+
+        <record id="gym_dayofweek_thursday_name_ES" model="ir.translation">
+            <field name="name">gym.dayofweek,name</field>
+            <field name="type">model</field>
+            <field name="module">GYM-Odoo</field>
+            <field name="res_id" ref="gym_dayofweek_thursday" />
+            <field name="lang">es_ES</field>
+            <field name="src">Thursday</field>
+            <field name="value">Jueves</field>
+        </record>
+
+        <record id="gym_dayofweek_thursday_abbreviation_ES" model="ir.translation">
+            <field name="name">gym.dayofweek,abbreviation</field>
+            <field name="type">model</field>
+            <field name="module">GYM-Odoo</field>
+            <field name="res_id" ref="gym_dayofweek_thursday" />
+            <field name="lang">es_ES</field>
+            <field name="src">Thu</field>
+            <field name="value">Jue</field>
+        </record>
+
+        <record id="gym_dayofweek_friday" model="gym.dayofweek">
+            <field name="index">5</field>
+            <field name="name">Friday</field>
+            <field name="abbreviation">Fri</field>
+        </record>
+
+        <record id="gym_dayofweek_friday_name_ES" model="ir.translation">
+            <field name="name">gym.dayofweek,name</field>
+            <field name="type">model</field>
+            <field name="module">GYM-Odoo</field>
+            <field name="res_id" ref="gym_dayofweek_friday" />
+            <field name="lang">es_ES</field>
+            <field name="src">Friday</field>
+            <field name="value">Viernes</field>
+        </record>
+
+        <record id="gym_dayofweek_friday_abbreviation_ES" model="ir.translation">
+            <field name="name">gym.dayofweek,abbreviation</field>
+            <field name="type">model</field>
+            <field name="module">GYM-Odoo</field>
+            <field name="res_id" ref="gym_dayofweek_friday" />
+            <field name="lang">es_ES</field>
+            <field name="src">Fri</field>
+            <field name="value">Vie</field>
+        </record>
+
+        <record id="gym_dayofweek_saturday" model="gym.dayofweek">
+            <field name="index">6</field>
+            <field name="name">Saturday</field>
+            <field name="abbreviation">Sat</field>
+        </record>
+
+        <record id="gym_dayofweek_saturday_name_ES" model="ir.translation">
+            <field name="name">gym.dayofweek,name</field>
+            <field name="type">model</field>
+            <field name="module">GYM-Odoo</field>
+            <field name="res_id" ref="gym_dayofweek_saturday" />
+            <field name="lang">es_ES</field>
+            <field name="src">Saturday</field>
+            <field name="value">Sábado</field>
+        </record>
+
+        <record id="gym_dayofweek_saturday_abbreviation_ES" model="ir.translation">
+            <field name="name">gym.dayofweek,abbreviation</field>
+            <field name="type">model</field>
+            <field name="module">GYM-Odoo</field>
+            <field name="res_id" ref="gym_dayofweek_saturday" />
+            <field name="lang">es_ES</field>
+            <field name="src">Sat</field>
+            <field name="value">Sab</field>
+        </record>
+
+        <record id="gym_dayofweek_sunday" model="gym.dayofweek">
+            <field name="index">7</field>
+            <field name="name">Sunday</field>
+            <field name="abbreviation">Sun</field>
+        </record>
+
+        <record id="gym_dayofweek_sunday_name_ES" model="ir.translation">
+            <field name="name">gym.dayofweek,name</field>
+            <field name="type">model</field>
+            <field name="module">GYM-Odoo</field>
+            <field name="res_id" ref="gym_dayofweek_sunday" />
+            <field name="lang">es_ES</field>
+            <field name="src">Sunday</field>
+            <field name="value">Domingo</field>
+        </record>
+
+        <record id="gym_dayofweek_sunday_abbreviation_ES" model="ir.translation">
+            <field name="name">gym.dayofweek,abbreviation</field>
+            <field name="type">model</field>
+            <field name="module">GYM-Odoo</field>
+            <field name="res_id" ref="gym_dayofweek_sunday" />
+            <field name="lang">es_ES</field>
+            <field name="src">Sun</field>
+            <field name="value">Dom</field>
+        </record>
+    
+    </data>
+    
+</odoo>

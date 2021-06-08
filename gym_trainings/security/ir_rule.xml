@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="admin_only_read_my_exercises" model="ir.rule">
+        <field name="name">admin_only_read_my_exercises</field>
+        <field name="model_id" ref="model_gym_exercise"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4,ref('base.group_system'))]" />
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="only_read_my_exercises" model="ir.rule">
+        <field name="name">only_read_my_exercises</field>
+        <field name="model_id" ref="model_gym_exercise"/>
+        <field name="domain_force">['|',('state','in',['public','base']),('partner_id','=',user.partner_id.id)]</field>
+        <field name="groups" eval="[(4,ref('gym_base.group_gym_account'))]" />
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="admin_only_edit_my_exercises" model="ir.rule">
+        <field name="name">admin_only_edit_my_exercises</field>
+        <field name="model_id" ref="model_gym_exercise"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4,ref('base.group_system'))]" />
+        <field name="perm_read" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="only_edit_my_exercises" model="ir.rule">
+        <field name="name">only_edit_my_exercises</field>
+        <field name="model_id" ref="model_gym_exercise"/>
+        <field name="domain_force">[('partner_id','=',user.partner_id.id)]</field>
+        <field name="groups" eval="[(4,ref('gym_base.group_gym_individual'))]" />
+        <field name="perm_read" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="admin_only_edit_my_trainings" model="ir.rule">
+        <field name="name">admin_only_edit_my_trainings</field>
+        <field name="model_id" ref="model_gym_workout"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4,ref('base.group_system'))]" />
+        <field name="perm_read" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="only_edit_my_trainings" model="ir.rule">
+        <field name="name">only_edit_my_trainings</field>
+        <field name="model_id" ref="model_gym_workout"/>
+        <field name="domain_force">[('partner_id','=',user.partner_id.id)]</field>
+        <field name="groups" eval="[(4,ref('gym_base.group_gym_individual'))]" />
+        <field name="perm_read" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+</odoo>

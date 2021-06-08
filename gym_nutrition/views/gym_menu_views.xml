@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="gym_menu_view_tree" model="ir.ui.view">
+            <field name="name">gym.menu.view.tree</field>
+            <field name="model">gym.menu</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="client_id"/>
+                    <field name="partner_id" attrs="{'invisible':[('client_id','=',False)]}" string="Created by"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="gym_menu_view_form" model="ir.ui.view">
+            <field name="name">gym.menu.view.form</field>
+            <field name="model">gym.menu</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div name="button_box" class="oe_button_box">
+                            <button name="open_menu_days" type="object" class="oe_stat_button" icon="fa-users" attrs="{'invisible':[('menu_day_count','=',0)]}">
+                                <field name="menu_day_count" string="days" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </group>
+                            <group>
+                                <field name="is_trainer" invisible="1"/>
+                                <field name="partner_id" attrs="{'invisible':[('client_id','=',False)]}" string="Created by"/>
+                                <field name="client_id" attrs="{'invisible':[('is_trainer','=',False)]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="gym_menu_my_action_server" model="ir.actions.server">
+            <field name="name">My menus</field>
+            <field name="model_id" ref="model_gym_menu"/>
+            <field name="state">code</field>
+            <field name="code">action = model.open_my_menus()</field>
+        </record>
+
+            
+        <menuitem
+            id="my_menus_menu"
+            name="My Menus"
+            action="gym_menu_my_action_server"
+            parent="gym_base.you_root_menu"
+            sequence="40"/>
+    
+    </data>
+    
+
+</odoo>

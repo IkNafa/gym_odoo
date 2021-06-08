@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="gym_food_group_system_access" model="ir.model.access">
+        <field name="name">gym_food_group_system_access</field>
+        <field name="model_id" ref="model_gym_food"/>
+        <field name="group_id" ref="base.group_system"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+    
+    <record id="gym_food_group_gym_individual_access" model="ir.model.access">
+        <field name="name">gym_food_group_gym_individual_access</field>
+        <field name="model_id" ref="model_gym_food"/>
+        <field name="group_id" ref="gym_base.group_gym_individual"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="gym_food_type_group_system_access" model="ir.model.access">
+        <field name="name">gym_food_type_group_system_access</field>
+        <field name="model_id" ref="model_gym_food_type"/>
+        <field name="group_id" ref="base.group_system"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+    
+    <record id="gym_food_type_group_gym_individual_access" model="ir.model.access">
+        <field name="name">gym_food_type_group_gym_individual_access</field>
+        <field name="model_id" ref="model_gym_food_type"/>
+        <field name="group_id" ref="gym_base.group_gym_individual"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+    
+    <record id="gym_food_ingredient_line_group_system_access" model="ir.model.access">
+        <field name="name">gym_food_ingredient_line_group_system_access</field>
+        <field name="model_id" ref="model_gym_food_ingredient_line"/>
+        <field name="group_id" ref="base.group_system"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="gym_food_ingredient_line_group_gym_individual_access" model="ir.model.access">
+        <field name="name">gym_food_ingredient_line_group_gym_individual_access</field>
+        <field name="model_id" ref="model_gym_food_ingredient_line"/>
+        <field name="group_id" ref="gym_base.group_gym_individual"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="gym_menu_group_gym_account_access" model="ir.model.access">
+        <field name="name">gym_menu_group_gym_account_access</field>
+        <field name="model_id" ref="model_gym_menu"/>
+        <field name="group_id" ref="gym_base.group_gym_account"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="gym_menu_group_gym_individual_access" model="ir.model.access">
+        <field name="name">gym_menu_group_gym_individual_access</field>
+        <field name="model_id" ref="model_gym_menu"/>
+        <field name="group_id" ref="gym_base.group_gym_individual"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="gym_menu_day_group_system_access" model="ir.model.access">
+        <field name="name">gym_menu_day_group_system_access</field>
+        <field name="model_id" ref="model_gym_menu_day"/>
+        <field name="group_id" ref="base.group_system"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="gym_menu_day_group_gym_account_access" model="ir.model.access">
+        <field name="name">gym_menu_day_group_gym_account_access</field>
+        <field name="model_id" ref="model_gym_menu_day"/>
+        <field name="group_id" ref="gym_base.group_gym_account"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="gym_menu_day_group_gym_individual_access" model="ir.model.access">
+        <field name="name">gym_menu_day_group_gym_individual_access</field>
+        <field name="model_id" ref="model_gym_menu_day"/>
+        <field name="group_id" ref="gym_base.group_gym_individual"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+    
+    <record id="gym_menu_day_stage_group_gym_account_access" model="ir.model.access">
+        <field name="name">gym_menu_day_stage_group_gym_account_access</field>
+        <field name="model_id" ref="model_gym_menu_day_stage"/>
+        <field name="group_id" ref="gym_base.group_gym_account"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="gym_menu_day_stage_group_gym_individual_access" model="ir.model.access">
+        <field name="name">gym_menu_day_stage_group_gym_individual_access</field>
+        <field name="model_id" ref="model_gym_menu_day_stage"/>
+        <field name="group_id" ref="gym_base.group_gym_individual"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+    
+    <record id="gym_menu_day_stage_line_group_gym_account_access" model="ir.model.access">
+        <field name="name">gym_menu_day_stage_line_group_gym_account_access</field>
+        <field name="model_id" ref="model_gym_menu_day_stage_line"/>
+        <field name="group_id" ref="gym_base.group_gym_account"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="gym_menu_day_stage_line_group_gym_individual_access" model="ir.model.access">
+        <field name="name">gym_menu_day_stage_line_group_gym_individual_access</field>
+        <field name="model_id" ref="model_gym_menu_day_stage_line"/>
+        <field name="group_id" ref="gym_base.group_gym_individual"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+</odoo>

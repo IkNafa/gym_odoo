@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="gym_exercise_group_gym_account_access" model="ir.model.access">
+        <field name="name">gym_exercise_group_gym_account_access</field>
+        <field name="model_id" ref="model_gym_exercise"/>
+        <field name="group_id" ref="gym_base.group_gym_account"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="gym_exercise_group_gym_individual_access" model="ir.model.access">
+        <field name="name">gym_exercise_group_gym_individual_access</field>
+        <field name="model_id" ref="model_gym_exercise"/>
+        <field name="group_id" ref="gym_base.group_gym_individual"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="gym_workout_group_gym_account_access" model="ir.model.access">
+        <field name="name">gym_workout_group_gym_account_access</field>
+        <field name="model_id" ref="model_gym_workout"/>
+        <field name="group_id" ref="gym_base.group_gym_account"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="gym_workout_group_gym_individual_access" model="ir.model.access">
+        <field name="name">gym_workout_group_gym_individual_access</field>
+        <field name="model_id" ref="model_gym_workout"/>
+        <field name="group_id" ref="gym_base.group_gym_individual"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="gym_workout_exercise_group_gym_account_access" model="ir.model.access">
+        <field name="name">gym_workout_exercise_group_gym_account_access</field>
+        <field name="model_id" ref="model_gym_workout_exercise"/>
+        <field name="group_id" ref="gym_base.group_gym_account"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="gym_workout_exercise_group_gym_individual_access" model="ir.model.access">
+        <field name="name">gym_workout_exercise_group_gym_individual_access</field>
+        <field name="model_id" ref="model_gym_workout_exercise"/>
+        <field name="group_id" ref="gym_base.group_gym_individual"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="gym_workout_exercise_set_group_gym_account_access" model="ir.model.access">
+        <field name="name">gym_workout_exercise_set_group_gym_account_access</field>
+        <field name="model_id" ref="model_gym_workout_exercise_set"/>
+        <field name="group_id" ref="gym_base.group_gym_account"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="gym_workout_exercise_set_group_gym_individual_access" model="ir.model.access">
+        <field name="name">gym_workout_exercise_set_group_gym_individual_access</field>
+        <field name="model_id" ref="model_gym_workout_exercise_set"/>
+        <field name="group_id" ref="gym_base.group_gym_individual"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+</odoo>

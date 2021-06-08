@@ -1,4 +1,4 @@
-from odoo import _, api, fields, models
+from odoo import _, api, fields, models, tools
 
 class Weighing(models.Model):
     _name = 'gym.weighing'
@@ -6,12 +6,12 @@ class Weighing(models.Model):
     _rec_name = 'date'
 
     def _default_get_height(self):
-        weighing_id = self.env['gym.weighing'].search([],limit=1,order="date desc")
+        weighing_id = self.env['gym.weighing'].search([('partner_id','=',self.env.user.partner_id.id)],limit=1,order="date desc")
         if weighing_id:
             return weighing_id.height
         return False
 
-    partner_id = fields.Many2one('res.partner', required=True)
+    partner_id = fields.Many2one('res.partner', required=True, ondelete="cascade")
 
     # Basic data
     image = fields.Binary(string="Image", attachment=True)
@@ -54,6 +54,20 @@ class Weighing(models.Model):
             'target':'current',
             'domain':[('partner_id','=',partner_id.id)],
         }
+    
+    @api.model
+    def create(self, vals):
+        if vals.get("image"):
+            tools.image_resize_images(vals, sizes={'image': (1024, None)})
+        
+        return super(Weighing, self).create(vals)
+
+    @api.multi
+    def write(self, vals):
+        if vals.get("image"):
+            tools.image_resize_images(vals, sizes={'image': (1024, None)}) 
+
+        return super(Weighing, self).write(vals)
 
 
     

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <menuitem
+            id="nutrition_root_menu"
+            name="Nutrition"
+            parent="gym_base.configuration_root_menu"
+            sequence="20"/>
+    
+    </data>
+    
+
+</odoo>

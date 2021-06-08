@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="gym_menu_day_stage_line_view_tree" model="ir.ui.view">
+            <field name="name">gym.menu.day.stage.line.view.tree</field>
+            <field name="model">gym.menu.day.stage.line</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="food_id"/>
+                    <field name="quantity"/>
+                    <field name="calories" sum="Total Calories"/>
+                    <field name="carbohydrates" sum="Total Carbohydrates"/>
+                    <field name="proteins" sum="Total Proteins"/>
+                    <field name="fats" sum="Total Fats"/>
+                </tree>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

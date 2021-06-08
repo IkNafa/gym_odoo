@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="gym_menu_day_view_tree" model="ir.ui.view">
+            <field name="name">gym.menu.day.view.tree</field>
+            <field name="model">gym.menu.day</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="day_id" options="{'no_open' : True}"/>
+                    <field name="calories" sum="Total Calories"/>
+                    <field name="carbohydrates" sum="Total Carbohydrates"/>
+                    <field name="proteins" sum="Total Proteins"/>
+                    <field name="fats" sum="Proteins"/>
+                    <field name="stage_str"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="gym_menu_day_view_form" model="ir.ui.view">
+            <field name="name">gym.menu.day.view.form</field>
+            <field name="model">gym.menu.day</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1><field name="day_id" readonly="1" options="{'no_open' : True}"/></h1>
+                        </div>
+                        <field name="stage_ids" widget="one2many_list" options="{'no_open':True}">
+                            <tree editable="bottom">
+                                <field name="name"/>
+                                <field name="suggested_hour"/>
+                                <field name="calories" sum="Total Calories"/>
+                                <field name="carbohydrates" sum="Total Carbohydrates"/>
+                                <field name="proteins" sum="Total Proteins"/>
+                                <field name="fats" sum="Proteins"/>
+                                <field name="stage_line_str"/>
+                                <button name="open_menu_day_stage_lines" icon="fa-external-link" type="object"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

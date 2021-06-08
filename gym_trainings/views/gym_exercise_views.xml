@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="gym_exercise_view_tree" model="ir.ui.view">
+        <field name="name">gym.exercise.view.tree</field>
+        <field name="model">gym.exercise</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="state"/>
+                <field name="external_video"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="gym_exercise_view_form" model="ir.ui.view">
+        <field name="name">gym.exercise.view.form</field>
+        <field name="model">gym.exercise</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Publish" name="publish" type="object" class="oe_highlight" attrs="{'invisible':[('state','not in',['private'])]}" groups="gym_base.group_gym_trainer"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}"/>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" readonly="1" attrs="{'invisible':[('state','in',['base'])]}"/>
+                            <field name="external_video" widget="url"/>
+                        </group>
+                    </group>
+                    <group string="Description">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="gym_exercise_action" model="ir.actions.act_window">
+        <field name="name">Exercises</field>
+        <field name="res_model">gym.exercise</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_state':'base'}</field>
+    </record>
+
+
+    <menuitem
+        id="exercise_menu"
+        name="Exercises"
+        action="gym_exercise_action"
+        parent="gym_trainings.training_root_menu"
+        sequence="1"/>
+
+</odoo>

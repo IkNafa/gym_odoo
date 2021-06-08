@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="gym_workout_view_tree" model="ir.ui.view">
+            <field name="name">gym.workout.view.tree</field>
+            <field name="model">gym.workout</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="dayofweek_str"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="gym_workout_view_form" model="ir.ui.view">
+            <field name="name">gym.workout.view.form</field>
+            <field name="model">gym.workout</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Save" name="save_routine" type="object" class="oe_highlight" attrs="{'invisible':['|',('can_save','=',False),('is_saved','=',True)]}"/>
+                        <button string="Remove" name="remove_routine" type="object" class="oe_highlight" attrs="{'invisible':['|',('can_save','=',False),('is_saved','=',False)]}"/>
+                    </header>
+                    <sheet>
+                        <field name="is_saved" invisible="1"/>
+                        <field name="can_save" invisible="1"/>
+                        <div class="oe_title">
+                            <h1><field name="name" placeholder="Name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="start_date"/>
+                                <field name="end_date" attrs="{'required':[('start_date','!=',False)],'invisible':[('start_date','=',False)]}"/>
+                                <field name="dayofweek_ids" widget="many2many_checkboxes" attrs="{'invisible':[('start_date','=',False)]}"/>
+                            </group>
+                            <group>
+                                <field name="is_trainer" invisible="1"/>
+                                <field name="partner_id" attrs="{'invisible':[('client_id','=',False)]}" readonly="1"/>
+                                <field name="client_id" attrs="{'invisible':[('is_trainer','=',False)]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="exercises" string="Exercises">
+                                <field name="exercise_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="set_str"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="options" string="Options">
+                                <group>
+                                    <field name="save"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="gym_workout_view_kanban" model="ir.ui.view">
+            <field name="name">gym.workout.view.kanban</field>
+            <field name="model">gym.workout</field>
+            <field name="arch" type="xml">
+                <kanban class="oe_background_grey o_kanban_dashboard o_project_kanban o_emphasize_colors">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="client_id"/>
+                    <field name="dayofweek_str"/>
+                    <field name="exercise_count"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_has_icon">
+                                <div class="o_project_kanban_main">
+                                    <div class="o_kanban_card_content">
+                                        <div class="o_kanban_primary_left">
+                                            <div class="o_primary">
+                                                <span><b><t t-esc="record.name.value"/></b></span>
+                                                <span t-if="record.partner_id.value">
+                                                    <strong><t t-esc="record.partner_id.value"/></strong>
+                                                    <t t-if="record.client_id.value">
+                                                        -> <strong><t t-esc="record.client_id.value"/></strong>
+                                                    </t>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="o_project_kanban_boxes">
+                                    <t t-if="record.exercise_count.value > 0">
+                                        <a class="o_project_kanban_box" type="edit">
+                                            <div>
+                                                <span class="o_value"><t t-esc="record.exercise_count.value"/></span>
+                                                <span class="o_label">Exercises</span>
+                                            </div>
+                                        </a>
+                                    </t>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="gym_workout_personal_action_server" model="ir.actions.server">
+            <field name="name">My Workouts</field>
+            <field name="model_id" ref="model_gym_workout"/>
+            <field name="state">code</field>
+            <field name="code">action = model.open_my_workouts()</field>
+        </record>
+
+        <menuitem
+            id="workout_menu"
+            name="My Workouts"
+            action="gym_workout_personal_action_server"
+            parent="gym_base.you_root_menu"
+            sequence="20"/>
+    
+    </data>
+    
+
+</odoo>
