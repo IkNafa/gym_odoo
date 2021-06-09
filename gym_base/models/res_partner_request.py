@@ -18,7 +18,7 @@ class ResPartnerRequest(models.Model):
                 'client_ids': [(4,self.from_id.id)]
             })
         elif self.type == "club":
-            self.to_id.write({
+            self.sudo().to_id.write({
                 'child_ids': [(4,self.from_id.id)]
             })
         elif self.type == "shop":

@@ -23,6 +23,7 @@
         'views/templates.xml',
         'views/gym_dayofweek_views.xml',
         'views/res_partner_request_views.xml',
+        'views/gym_event_views.xml',
 
         'wizard/res_partner_change_pass_wizard.xml',
     ],

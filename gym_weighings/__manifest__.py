@@ -1,5 +1,5 @@
 {
-    'name': 'Gym Weighting',
+    'name': 'Gym Weighing',
     'version': '1.0',
     'description': '',
     'summary': '',
@@ -16,5 +16,6 @@
 
         'views/gym_weighing_views.xml',
         'views/res_partner_views.xml',
+        'views/gym_event_views.xml',
     ],
 }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="gym_event_view_form" model="ir.ui.view">
+        <field name="name">gym.event.view.form</field>
+        <field name="model">gym.event</field>
+        <field name="inherit_id" ref="gym_base.gym_event_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <field name="weighing_id" invisible="1"/>
+                <div attrs="{'invisible':['|',('type','not in',['weighing']),('weighing_id','=',False)]}">
+                    <field name="weighing_image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}"/>
+                    <div class="oe_title">
+                        <h5><field name="date_start" placeholder="Date"/></h5>
+                        <div class="o_row">
+                            <label for="weight"/>
+                            <field name="weight" placeholder="Weight"/>
+                            <br/>
+                            <label for="height"/>
+                            <field name="height" placeholder="Height"/>
+                        </div>
+                    </div>
+                    <group>
+                        <field name="measurement_method"/>
+                    </group>
+                    <group string="Skin Fold" attrs="{'invisible':[('measurement_method','!=','fold')]}">
+                        <group>
+                            <field name="bicep_skinfold"/>
+                            <field name="tricep_skinfold"/>
+                            <field name="shoulder_skinfold"/>
+                            <field name="subillacres_skinfold"/>
+                        </group>
+                    </group> 
+                    <group string="Impedance Scale" attrs="{'invisible':[('measurement_method','!=','impedance')]}">
+                        <group>
+                            <field name="body_fat"/>
+                            <field name="muscle_mass"/>
+                            <field name="bmi"/>
+                            <field name="visceral_fat"/>
+                            <field name="basal_metabolism"/>
+                            <field name="bone_mass"/>
+                            <field name="water_percentage"/>
+                            <field name="proteins"/>
+                        </group>
+                    </group> 
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="gym_event_view_calendar" model="ir.ui.view">
+        <field name="name">gym.event.view.calendar</field>
+        <field name="model">gym.event</field>
+        <field name="inherit_id" ref="gym_base.gym_event_view_calendar"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="weight" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

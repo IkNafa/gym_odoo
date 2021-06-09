@@ -3,7 +3,7 @@ from odoo import _, api, fields, models, tools
 class Exercise(models.Model):
     _name = 'gym.exercise'
 
-    partner_id = fields.Many2one('res.partner', default=lambda self: self.env.user.partner_id.id)
+    partner_id = fields.Many2one('res.partner', default=lambda self: self.env.user.partner_id.id, ondelete="cascade")
 
     name = fields.Char(string="Name", required=True, translate=True)
     description = fields.Text(string="Description")

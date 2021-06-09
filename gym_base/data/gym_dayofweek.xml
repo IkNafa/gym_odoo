@@ -2,7 +2,7 @@
     <data noupdate="1">
     
         <record id="gym_dayofweek_monday" model="gym.dayofweek">
-            <field name="index">1</field>
+            <field name="index">0</field>
             <field name="name">Monday</field>
             <field name="abbreviation">Mon</field>
         </record>
@@ -28,7 +28,7 @@
         </record>
 
         <record id="gym_dayofweek_tuesday" model="gym.dayofweek">
-            <field name="index">2</field>
+            <field name="index">1</field>
             <field name="name">Tuesday</field>
             <field name="abbreviation">Tue</field>
         </record>
@@ -54,7 +54,7 @@
         </record>
 
         <record id="gym_dayofweek_wednesday" model="gym.dayofweek">
-            <field name="index">3</field>
+            <field name="index">2</field>
             <field name="name">Wednesday</field>
             <field name="abbreviation">Wed</field>
         </record>
@@ -80,7 +80,7 @@
         </record>
 
         <record id="gym_dayofweek_thursday" model="gym.dayofweek">
-            <field name="index">4</field>
+            <field name="index">3</field>
             <field name="name">Thursday</field>
             <field name="abbreviation">Thu</field>
         </record>
@@ -106,7 +106,7 @@
         </record>
 
         <record id="gym_dayofweek_friday" model="gym.dayofweek">
-            <field name="index">5</field>
+            <field name="index">4</field>
             <field name="name">Friday</field>
             <field name="abbreviation">Fri</field>
         </record>
@@ -132,7 +132,7 @@
         </record>
 
         <record id="gym_dayofweek_saturday" model="gym.dayofweek">
-            <field name="index">6</field>
+            <field name="index">5</field>
             <field name="name">Saturday</field>
             <field name="abbreviation">Sat</field>
         </record>
@@ -158,7 +158,7 @@
         </record>
 
         <record id="gym_dayofweek_sunday" model="gym.dayofweek">
-            <field name="index">7</field>
+            <field name="index">6</field>
             <field name="name">Sunday</field>
             <field name="abbreviation">Sun</field>
         </record>

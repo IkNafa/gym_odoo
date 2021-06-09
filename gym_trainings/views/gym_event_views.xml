@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="gym_event_view_form" model="ir.ui.view">
+        <field name="name">gym.event.view.form</field>
+        <field name="model">gym.event</field>
+        <field name="inherit_id" ref="gym_base.gym_event_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                
+                <field name="workout_id" invisible="1"/> 
+                <div attrs="{'invisible':['|',('type','not in',['workout']),('workout_id','=',False)]}">
+                    <div class="oe_title">
+                        <h1><field name="workout_name" placeholder="Name"/></h1>
+                    </div>
+                    <notebook>
+                        <page name="exercises" string="Exercises">
+                            <field name="exercise_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="set_str"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </div>
+                    
+            </xpath>
+        </field>
+    </record>
+
+    <record id="gym_event_view_calendar" model="ir.ui.view">
+        <field name="name">gym.event.view.calendar</field>
+        <field name="model">gym.event</field>
+        <field name="inherit_id" ref="gym_base.gym_event_view_calendar"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="workout_name" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -18,5 +18,6 @@
         'views/gym_exercise_views.xml',
         'views/gym_workout_views.xml',
         'views/gym_workout_exercise_views.xml',
+        'views/gym_event_views.xml',
     ],
 }

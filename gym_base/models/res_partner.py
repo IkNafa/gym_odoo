@@ -26,6 +26,8 @@ class ResPartner(models.Model):
     trainer_ids = fields.Many2many('res.partner','res_partner_client_trainer_rel','trainer_id','client_id')
     client_ids = fields.Many2many('res.partner','res_partner_client_trainer_rel','client_id','trainer_id')
 
+    android_token = fields.Char()
+
     is_self = fields.Boolean(compute="_compute_is_self")
     is_following = fields.Boolean(compute="_compute_is_following")
     is_follower = fields.Boolean(compute="_compute_is_follower")
@@ -175,6 +177,8 @@ class ResPartner(models.Model):
             action['domain'] = [('id','in',partner_id.sponsored_ids.ids)]
         elif partner_id.gym_account_type == "club":
             action['domain'] = [('id','in',partner_id.child_ids.ids)]
+        else:
+            return False
         return action
     
     @api.model
@@ -188,7 +192,11 @@ class ResPartner(models.Model):
     def open_my_clients(self):
         partner_id = self.env.user.partner_id
         action = self.env.ref('gym_base.res_partner_action').read()[0]
-        action['domain'] = [('id','in',partner_id.client_ids.ids)]
+        if partner_id.gym_account_type == "trainer":
+            action['domain'] = [('id','in',partner_id.client_ids.ids)]
+        elif partner_id.gym_account_type == "club":
+            client_ids = sum(list(map(lambda employee_id: employee_id.client_ids.ids,partner_id.child_ids)),[])
+            action['domain'] = [('id','in',client_ids)]
         return action
 
     @api.depends('is_company', 'name', 'parent_id.name', 'type', 'company_name')

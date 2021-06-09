@@ -21,12 +21,13 @@
             <field name="arch" type="xml">
                 <form create="false" delete="false">
                     <header>
-                        <button string="Follow" name="follow_partner" type="object" class="oe_highlight" attrs="{'invisible':['|','|',('is_self','=',True),('is_company','=',True),('is_follower','=',True)]}"/>
-                        <button string="Unfollow" name="unfollow_partner" type="object" class="oe_highlight" attrs="{'invisible':['|','|',('is_self','=',True),('is_company','=',True),('is_follower','=',False)]}"/>
-                        <button string="Join" name="join_club" type="object" class="oe_highlight" attrs="{'invisible':['|','|',('is_self','=',True),('is_company','=',False),('is_member','=',True)]}"/>
-                        <button string="Leave" name="leave_club" type="object" class="oe_highlight" attrs="{'invisible':['|','|',('is_self','=',True),('is_company','=',False),('is_member','=',False)]}"/>
+                        <button string="Follow" name="follow_partner" type="object" class="oe_highlight" attrs="{'invisible':['|','|',('is_self','=',True),('is_company','=',True),('is_follower','=',True)]}" groups="gym_base.group_gym_individual"/>
+                        <button string="Unfollow" name="unfollow_partner" type="object" class="oe_highlight" attrs="{'invisible':['|','|',('is_self','=',True),('is_company','=',True),('is_follower','=',False)]}" groups="gym_base.group_gym_individual"/>
+                        <button string="Join" name="join_club" type="object" class="oe_highlight" attrs="{'invisible':['|','|',('is_self','=',True),('is_company','=',False),('is_member','=',True)]}" groups="gym_base.group_gym_individual"/>
+                        <button string="Leave" name="leave_club" type="object" class="oe_highlight" attrs="{'invisible':['|','|',('is_self','=',True),('is_company','=',False),('is_member','=',False)]}" groups="gym_base.group_gym_individual"/>
                         <button string="Send trainer request" name="send_request" type="object" class="oe_highlight" attrs="{'invisible':['|','|','|','|',('is_self','=',True),('is_company','=',True),('is_my_trainer','=',True),('has_request','=',True),('gym_account_type','!=','trainer')]}" groups="gym_base.group_gym_individual"/>
-                        <button string="Send sponsor request" name="send_request" type="object" class="oe_highlight" attrs="{'invisible':['|','|','|','|',('is_self','=',True),('is_company','=',True),('is_my_sponsor','=',True),('has_request','=',True),('gym_account_type','!=','shop')]}" groups="gym_base.group_gym_trainer"/>
+                        <button string="Send club request" name="send_request" type="object" class="oe_highlight" attrs="{'invisible':['|','|','|','|',('is_self','=',True),('is_company','=',False),('is_my_club','=',True),('has_request','=',True),('gym_account_type','!=','club')]}" groups="gym_base.group_gym_trainer"/>
+                        <button string="Send sponsor request" name="send_request" type="object" class="oe_highlight" attrs="{'invisible':['|','|','|','|',('is_self','=',True),('is_company','=',False),('is_my_sponsor','=',True),('has_request','=',True),('gym_account_type','!=','shop')]}" groups="gym_base.group_gym_trainer"/>
                         <button string="Request sended" attrs="{'invisible':['|',('is_self','=',True),('has_request','=',False)]}"/>
                     </header>
                     <sheet>
@@ -60,7 +61,7 @@
                             </h1>
                             <div class="o_row">
                                 <field name="is_company" invisible="1"/>
-                                <field name="gym_account_type" invisible="1" />
+                                <field name="gym_account_type" readonly="1" /> <br/>
                                 <field name="parent_id" widget="res_partner_many2one" context="{'form_view_ref': 'gym_base.res_partner_view_form'}" placeholder="Club" domain="[('is_company', '=', True),('gym_account_type','=','club')]" attrs="{'invisible':['|',('is_company','=',True),('gym_account_type','!=','trainer')]}" readonly="1"/>
                                 <field name="sponsor_id" widget="res_partner_many2one" context="{'form_view_ref': 'gym_base.res_partner_view_form'}" placeholder="Sponsor" domain="[('is_company', '=', True),('gym_account_type','=','shop')]" attrs="{'invisible':['|',('is_company','=',True),('gym_account_type','!=','trainer')]}" readonly="1"/>
                             </div>
@@ -262,7 +263,7 @@
             id="res_partner_clients_menu"
             name="My clients"
             action="res_partner_clients_action_server"
-            groups="gym_base.group_gym_trainer"
+            groups="gym_base.group_gym_trainer,gym_base.group_gym_club"
             parent="gym_base.you_root_menu"
             sequence="99"/>
 

@@ -15,7 +15,7 @@
     <record id="only_read_my_exercises" model="ir.rule">
         <field name="name">only_read_my_exercises</field>
         <field name="model_id" ref="model_gym_exercise"/>
-        <field name="domain_force">['|',('state','in',['public','base']),('partner_id','=',user.partner_id.id)]</field>
+        <field name="domain_force">['|','|',('state','in',['public','base']),('partner_id','=',user.partner_id.id),('partner_id','in',user.partner_id.child_ids.ids)]</field>
         <field name="groups" eval="[(4,ref('gym_base.group_gym_account'))]" />
         <field name="perm_read" eval="1"/>
         <field name="perm_create" eval="0"/>

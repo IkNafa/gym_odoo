@@ -60,7 +60,17 @@ class Weighing(models.Model):
         if vals.get("image"):
             tools.image_resize_images(vals, sizes={'image': (1024, None)})
         
-        return super(Weighing, self).create(vals)
+        weighing_id = super(Weighing, self).create(vals)
+
+        self.env['gym.event'].sudo().create({
+            'date_start': vals['date'],
+            'date_stop': vals['date'],
+            'type':'weighing',
+            'weighing_id': weighing_id.id,
+            'partner_id': weighing_id.partner_id.id,
+        })
+
+        return weighing_id
 
     @api.multi
     def write(self, vals):

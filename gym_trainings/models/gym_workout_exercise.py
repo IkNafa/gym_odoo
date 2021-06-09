@@ -3,8 +3,8 @@ from odoo import _, api, fields, models
 class WorkoutExercise(models.Model):
     _name = 'gym.workout.exercise'
 
-    workout_id = fields.Many2one('gym.workout', required=True)
-    exercise_id = fields.Many2one('gym.exercise', required=True)
+    workout_id = fields.Many2one('gym.workout', required=True, ondelete="cascade")
+    exercise_id = fields.Many2one('gym.exercise', required=True, ondelete="cascade")
 
     sequence = fields.Integer()
 

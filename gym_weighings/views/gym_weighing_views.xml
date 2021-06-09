@@ -21,7 +21,6 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button string="Publish" name="publish" type="object" class="oe_highlight" attrs="{'invisible':[('id','=',False)]}"/>
                     </header>
                     <sheet>
                         <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}"/>

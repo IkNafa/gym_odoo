@@ -1,5 +1,6 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from datetime import timedelta
 
 class Workout(models.Model):
     _name = 'gym.workout'
@@ -9,8 +10,8 @@ class Workout(models.Model):
     end_date = fields.Date()
     description = fields.Text()
 
-    partner_id = fields.Many2one('res.partner', domain=[('is_company','=',False)], required=True, default=lambda self: self.env.user.partner_id.id)
-    client_id = fields.Many2one('res.partner', domain=[('is_company','=',False)])
+    partner_id = fields.Many2one('res.partner', domain=[('is_company','=',False)], required=True, default=lambda self: self.env.user.partner_id.id, ondelete="cascade")
+    client_id = fields.Many2one('res.partner', domain=[('is_company','=',False)], ondelete="set null")
 
     is_trainer = fields.Boolean(compute="_compute_is_trainer")
 
@@ -24,6 +25,8 @@ class Workout(models.Model):
 
     exercise_ids = fields.One2many('gym.workout.exercise','workout_id', string="Exercises")
     exercise_count = fields.Integer(compute="_compute_exercise_count")
+
+    event_ids = fields.One2many('gym.event','workout_id')
 
     @api.depends('dayofweek_ids')
     def _compute_dayofweek_str(self):
@@ -80,12 +83,39 @@ class Workout(models.Model):
         self.ensure_one()
         self.saved_partner_ids = [3,self.env.user.partner_id]
     
+    @api.model
+    def create(self, vals):
+        workout_id = super(Workout, self).create(vals)
+        workout_id.create_events()
+        return workout_id
+
     @api.multi
     def write(self, vals):
         if "save" in vals:
             if vals.get("save") == False:
                 vals["saved_partner_ids"] = [5,0,0]
         return super(Workout, self).write(vals)
+
+    def create_events(self):
+        for record in self:
+            if record.start_date and record.end_date:
+                date = record.start_date
+                next_index = min(map(lambda dayofweek_id:  (dayofweek_id.index - date.weekday()) % 7, record.dayofweek_ids))
+                date += timedelta(days=next_index)
+                while(date <= record.end_date):
+                    #Crear
+                    self.env['gym.event'].sudo().create({
+                        'date_start': date,
+                        'date_stop': date,
+                        'type':'workout',
+                        'workout_id': record.id,
+                        'partner_id': record.partner_id.id
+                    })
+
+                    date += timedelta(days=1)
+                    next_index = min(map(lambda dayofweek_id:  (dayofweek_id.index - date.weekday()) % 7, record.dayofweek_ids))
+                    date += timedelta(days=next_index)
+
 
 class SavedWorkoutResPartnerRel:
     _table = "saved_workout_res_partner_rel"
