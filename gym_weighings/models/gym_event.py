@@ -23,28 +23,3 @@ class Event(models.Model):
     shoulder_skinfold = fields.Float(string="Shoulder", related="weighing_id.shoulder_skinfold")
     subillacres_skinfold = fields.Float(string="Subillacres", related="weighing_id.subillacres_skinfold")
     
-
-    def name_get(self):
-        result = []
-        for record in self:
-            result.append((record.id,"%s - %s" % (str(record.date_start), record.type)))
-        return result
-
-    @api.depends('weighing_id')
-    def _compute_partner_id(self):
-        for record in self:
-            if record.weighing_id:
-                record.partner_id = record.weighing_id.partner_id
-    
-
-    @api.model
-    def open_my_calendar(self):
-        partner_id = self.env.user.partner_id
-        return {
-            'name': "Calendar",
-            'view_mode': 'calendar',
-            'res_model': 'gym.event',
-            'type':'ir.actions.act_window',
-            'target':'current',
-            'domain':[('partner_id','=',partner_id.id)],
-        }

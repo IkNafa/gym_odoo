@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="gym_publication_exercise_view_form" model="ir.ui.view">
+            <field name="name">gym.publication.exercise.view.form</field>
+            <field name="model">gym.publication.exercise</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}" attrs="{'invisible':[('exercise_id','=',False)]}"/>
+                        <div class="oe_title">
+                            <field name="exercise_id"/>
+                        </div>
+                        <group attrs="{'invisible':[('exercise_id','=',False)]}">
+                            <group>
+                                <field name="external_video" widget="url" attrs="{'invisible':['|',('exercise_id','=',False),('external_video','=',False)]}"/>
+                            </group>
+                        </group>
+                        <group string="Description" attrs="{'invisible':['|',('exercise_id','=',False),('description','=',False)]}">
+                            <field name="description" nolabel="1"/>
+                        </group>
+                        <notebook attrs="{'invisible':[('exercise_id','=',False)]}">
+                            <page name="sets" string="Sets">
+                                <field name="set_ids">
+                                    <tree editable="bottom">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="reps"/>
+                                        <field name="weight"/>
+                                        <field name="work_time" widget="float_time"/>
+                                        <field name="rest_time" widget="float_time"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    </data>
+    
+
+</odoo>

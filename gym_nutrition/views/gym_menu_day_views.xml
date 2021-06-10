@@ -30,7 +30,7 @@
                         <field name="stage_ids" widget="one2many_list" options="{'no_open':True}">
                             <tree editable="bottom">
                                 <field name="name"/>
-                                <field name="suggested_hour"/>
+                                <field name="suggested_hour" widget="float_time"/>
                                 <field name="calories" sum="Total Calories"/>
                                 <field name="carbohydrates" sum="Total Carbohydrates"/>
                                 <field name="proteins" sum="Total Proteins"/>

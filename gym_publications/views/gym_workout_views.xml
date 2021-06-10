@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="gym_workout_view_form" model="ir.ui.view">
+            <field name="name">gym.workout.view.form</field>
+            <field name="model">gym.workout</field>
+            <field name="inherit_id" ref="gym_trainings.gym_workout_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button string="Publish" name="publish" type="object" class="oe_highlight"/>
+                </xpath>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

@@ -85,7 +85,7 @@ class Menu(models.Model):
                 'menu_id': menu_id.id,
                 'day_id': day.id
             }))
-        menu_id.write({"menu_day_ids": menu_ids})
+        menu_id.sudo().write({"menu_day_ids": menu_ids})
 
         return menu_id
     

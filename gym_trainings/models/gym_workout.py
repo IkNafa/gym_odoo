@@ -77,11 +77,15 @@ class Workout(models.Model):
     
     def save_routine(self):
         self.ensure_one()
-        self.saved_partner_ids = [4,self.env.user.partner_id]
+        self.env.user.partner_id.write({
+            'saved_workout_ids': [(4,self.id)]
+        })
     
     def remove_routine(self):
         self.ensure_one()
-        self.saved_partner_ids = [3,self.env.user.partner_id]
+        self.env.user.partner_id.write({
+            'saved_workout_ids': [(3,self.id)]
+        })
     
     @api.model
     def create(self, vals):
