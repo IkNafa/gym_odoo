@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_backend" name="gym_chat assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/gym_chat/static/src/js/gym_message_backend.js"/>
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"/>
+            <link rel="stylesheet" href="/gym_chat/static/src/css/gym_chat.css"/>
+        </xpath>
+    </template>
+
+    <template id="report_gym_message_html">
+        <div class="o_gym_message_page">
+            <t t-call="gym_chat.report_gym_message_base"/>
+        </div>
+    </template>
+
+    <template id="gym_chat.report_gym_message_base">
+		<t t-set="base_url" t-value="self.env['ir.config_parameter'].sudo().get_param('web.base.url')"/>
+        <div class="chat_body">
+			<div class="container bootstrap snippets bootdey">
+    			<div class="row">
+					<t t-call="gym_chat.partner_list"/>
+					<t t-call="gym_chat.messages"/>
+				</div>
+			</div>
+        </div>
+    </template>
+
+	<template id="partner_list">
+		<div class="col-md-4 bg-white ">
+			<div class=" row border-bottom padding-sm" style="height: 40px;">
+				<t t-esc="self.env.user.partner_id.name"/>
+			</div>
+			<ul class="friend-list">
+				<t t-foreach="self.get_partner_ids()" t-as="partner_id">
+					<li class="chat_user" t-att-name="partner_id.id">
+						<a class="clearfix">
+							<t t-set="attachment_id" t-value="self.env['ir.attachment'].search([('res_field','=','image_medium'),('res_id','=',partner_id.id),('res_model','=','res.partner')])"/>
+							<img t-att-src="base_url + '/web/image/ir.attachment/' + str(attachment_id.id) + '/datas'" alt="" class="img-circle"/>
+								<div class="friend-name">	
+									<strong><t t-esc="partner_id.name"/></strong>
+								</div>
+							<t t-set="last_message" t-value="self.getLastMessage(partner_id)"/>
+							<t t-if="last_message">
+								<div class="last-message text-muted"><t t-esc="last_message.message"/></div>
+								<small class="time text-muted"><t t-esc="last_message.datetime_relative_str"/></small>
+								<t t-set="is_my_message" t-value="last_message.from_id.id == self.env.user.partner_id.id"/>
+								<small class="chat-alert text-muted">
+								<t t-if="is_my_message">
+									<i class="fa fa-check"></i>
+								</t>
+								<t t-else="">
+									<i class="fa fa-reply"></i>
+								</t></small>
+							</t>
+
+						</a>
+					</li>
+				</t>
+			</ul>
+		</div>
+	</template>
+
+	<template id="messages">
+		<div class="col-md-8 bg-white ">
+			<div class="chat-message">
+				<ul class="chat">
+				
+				</ul>
+			</div>
+			<t t-call="gym_chat.chat_box"/>
+		</div>
+	</template>
+
+	<template id="chat_box">
+		<div class="chat-box bg-white">
+			<div class="input-group">
+				<input class="form-control border no-shadow no-rounded chat-text" placeholder="Type your message here"/>
+				<span class="input-group-btn">
+					<button class="btn btn-success no-rounded send" type="button">Send</button>
+				</span>
+			</div>
+		</div>
+	</template>
+
+</odoo>

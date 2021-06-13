@@ -39,7 +39,7 @@
                             </group>
                             <group>
                                 <field name="is_trainer" invisible="1"/>
-                                <field name="partner_id" attrs="{'invisible':[('client_id','=',False)]}" readonly="1"/>
+                                <field name="partner_id" attrs="{'invisible':[('client_id','=',False)]}" readonly="1" widget="res_partner_many2one" context="{'form_view_ref': 'gym_base.res_partner_view_form'}"/>
                                 <field name="client_id" attrs="{'invisible':[('is_trainer','=',False)]}"/>
                             </group>
                         </group>

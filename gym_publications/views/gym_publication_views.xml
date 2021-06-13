@@ -22,7 +22,19 @@
             <field name="model">gym.publication</field>
             <field name="arch" type="xml">
                 <form>
+                    <header attrs="{'invisible':[('id','=',False)]}">
+                        <button string="Like" name="like" type="object" class="oe_highlight" attrs="{'invisible':[('has_like','=',True)]}"/>
+                        <button string="Unlike" name="unlike" type="object" attrs="{'invisible':[('has_like','=',False)]}"/>
+                    </header>
+
                     <sheet>
+                        <field name="id" invisible="1"/>
+                        <field name="has_like" invisible="1"/>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="openLikedPartners" type="object" class="oe_stat_button" icon="fa-heart">
+                                <field name="liked_partner_count" string="likes" widget="statinfo"/>
+                            </button>
+                        </div>
                         <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}" attrs="{'invisible':[('weighing_id','=',False)]}"/>
                         <div class="oe_title" attrs="{'invisible':[('type','=',False)]}">
                             <h1><field name="title" placeholder="Title"/></h1>
@@ -44,8 +56,8 @@
                                 <field name="workout_id" options="{'no_create':True}"/>
                             </group>
                             <group attrs="{'invisible':[('type','!=','workout'),('workout_id','=',False)]}">
-                                <field name="workout_client_id" invisible="1"/>
-                                <field name="workout_partner_id" attrs="{'invisible':[('workout_client_id','=',False)]}"/>
+                                <field name="workout_client_id" invisible="1" />
+                                <field name="workout_partner_id" attrs="{'invisible':[('workout_client_id','=',False)]}" widget="res_partner_many2one" context="{'form_view_ref': 'gym_base.res_partner_view_form'}"/>
                             </group>
                         </group>
                         <group>
@@ -94,6 +106,13 @@
                             </page>
                         </notebook>
                     </sheet>
+                    <field name="comment_ids">
+                        <tree editable="top">
+                            <field name="datetime" readonly="1"/>
+                            <field name="partner_id" readonly="1"/>
+                            <field name="message"/>
+                        </tree>
+                    </field>
                 </form>
             </field>
         </record>

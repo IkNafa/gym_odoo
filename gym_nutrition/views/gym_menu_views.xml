@@ -12,7 +12,7 @@
                     <field name="start_date"/>
                     <field name="end_date"/>
                     <field name="client_id"/>
-                    <field name="partner_id" attrs="{'invisible':[('client_id','=',False)]}" string="Created by"/>
+                    <field name="partner_id" attrs="{'invisible':[('client_id','=',False)]}" string="Created by" widget="res_partner_many2one" context="{'form_view_ref': 'gym_base.res_partner_view_form'}"/>
                 </tree>
             </field>
         </record>
