@@ -37,9 +37,10 @@
                                 <field name="end_date"/>
                             </group>
                             <group>
+                                <field name="id" invisible="1"/>
                                 <field name="is_trainer" invisible="1"/>
                                 <field name="partner_id" attrs="{'invisible':[('client_id','=',False)]}" string="Created by"/>
-                                <field name="client_id" attrs="{'invisible':[('is_trainer','=',False)]}" options="{'no_create':True}"/>
+                                <field name="client_id" attrs="{'invisible':[('is_trainer','=',False)],'readonly':[('id','!=',False)]}" options="{'no_create':True}"/>
                             </group>
                         </group>
                     </sheet>
