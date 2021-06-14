@@ -1,6 +1,5 @@
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
-import humanize
 
 class Message(models.Model):
     _name = 'gym.message'
