@@ -39,7 +39,7 @@
                             <group>
                                 <field name="is_trainer" invisible="1"/>
                                 <field name="partner_id" attrs="{'invisible':[('client_id','=',False)]}" string="Created by"/>
-                                <field name="client_id" attrs="{'invisible':[('is_trainer','=',False)]}"/>
+                                <field name="client_id" attrs="{'invisible':[('is_trainer','=',False)]}" options="{'no_create':True}"/>
                             </group>
                         </group>
                     </sheet>
