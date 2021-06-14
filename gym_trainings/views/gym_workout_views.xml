@@ -109,7 +109,7 @@
         </record>
 
         <record id="gym_workout_personal_action_server" model="ir.actions.server">
-            <field name="name">My Workouts</field>
+            <field name="name">Workouts</field>
             <field name="model_id" ref="model_gym_workout"/>
             <field name="state">code</field>
             <field name="code">action = model.open_my_workouts()</field>
@@ -117,9 +117,9 @@
 
         <menuitem
             id="workout_menu"
-            name="My Workouts"
+            name="Workouts"
             action="gym_workout_personal_action_server"
-            parent="gym_base.you_root_menu"
+            parent="gym_base.me_training_menu"
             sequence="20"/>
     
     </data>

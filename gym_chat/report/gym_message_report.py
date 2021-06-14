@@ -23,10 +23,37 @@ class MessageReport(models.TransientModel):
     
     @api.model
     def get_partner_ids(self):
-        return list(dict.fromkeys(map(lambda message_id: message_id.from_id if message_id.from_id.id != self.env.user.partner_id.id else message_id.to_id, self.env['gym.message'].search([], order="datetime desc"))))
 
-    def getMessages(self, partner_id):
-        return self.env['gym.message'].search(['|',('to_id','=',partner_id.id),('from_id','=',partner_id.id)], order="datetime asc")
+        def getPartnerImageURL(id):
+            return "/web/image/ir.attachment/%s/datas " % str(self.env['ir.attachment'].search([('res_field','=','image_medium'),('res_id','=',id),('res_model','=','res.partner')],limit=1).id)
+
+        message_ids = self.env['gym.message'].search([], order="datetime desc")
+        res = []
+
+
+        actual_partner_id = self.env.user.partner_id
+        res_ids = []
+        for message_id in message_ids:
+            who_id = message_id.from_id if message_id.from_id.id != actual_partner_id.id else message_id.to_id
+            if who_id.id not in res_ids:
+                res.append({
+                    'partner_id': who_id.id,
+                    'name': who_id.name,
+                    'relative_datetime': message_id.datetime_relative_str,
+                    'message': message_id.message,
+                    'mine': message_id.from_id.id == self.env.user.partner_id.id,
+                    'image': getPartnerImageURL(who_id.id)
+                })
+                res_ids.append(who_id.id)
+
+        partner_ids = self.env['res.partner'].search([('id','!=',self.env.user.partner_id.id),('id','not in',res_ids)])
+        [res.append({
+            'partner_id': partner_id.id,
+            'name': partner_id.name,
+            'image': getPartnerImageURL(partner_id.id),
+            'message': ''
+        }) for partner_id in partner_ids]
+        return res
 
     def getLastMessage(self, partner_id):
         return self.env['gym.message'].search(['|',('to_id','=',partner_id.id),('from_id','=',partner_id.id)], order="datetime desc",limit=1)

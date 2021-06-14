@@ -9,7 +9,7 @@
             <field name="inherit_id" ref="gym_trainings.gym_workout_view_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//header" position="inside">
-                    <button string="Publish" name="publish" type="object" class="oe_highlight"/>
+                    <button string="Publish" name="publish" type="object" class="oe_highlight" attrs="{'invisible':[('id','=',False)]}"/>
                 </xpath>
             </field>
         </record>

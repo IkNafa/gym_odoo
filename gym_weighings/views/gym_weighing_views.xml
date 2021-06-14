@@ -85,7 +85,7 @@
             name="Progress"
             action="gym_weighing_progress_action_server"
             groups="gym_base.group_gym_individual"
-            parent="gym_base.you_root_menu"
+            parent="gym_base.me_training_menu"
             sequence="10"/>
 
     </data>

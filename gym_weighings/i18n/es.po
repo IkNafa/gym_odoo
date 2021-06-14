@@ -1,0 +1,247 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* gym_weighings
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-14 09:32+0000\n"
+"PO-Revision-Date: 2021-06-14 09:32+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_event__bmi
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__bmi
+msgid "BMI"
+msgstr "IMC"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_event__basal_metabolism
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__basal_metabolism
+msgid "Basal Metabolism"
+msgstr "Metabolismo basal"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_event__bicep_skinfold
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__bicep_skinfold
+msgid "Biceps"
+msgstr "Biceps"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_event__body_fat
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__body_fat
+msgid "Body Fat"
+msgstr "Grasa corporal"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_event__bone_mass
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__bone_mass
+msgid "Bone Mass"
+msgstr "Masa ósea"
+
+#. module: gym_weighings
+#: model:ir.model,name:gym_weighings.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__date
+#: model_terms:ir.ui.view,arch_db:gym_weighings.gym_event_view_form
+#: model_terms:ir.ui.view,arch_db:gym_weighings.gym_weighing_view_form
+msgid "Date"
+msgstr "Fecha"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_event__height
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__height
+#: model_terms:ir.ui.view,arch_db:gym_weighings.gym_event_view_form
+#: model_terms:ir.ui.view,arch_db:gym_weighings.gym_weighing_view_form
+msgid "Height"
+msgstr "Altura"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__id
+msgid "ID"
+msgstr ""
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_event__weighing_image
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__image
+msgid "Image"
+msgstr "Imagen"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__image_medium
+msgid "Image medium"
+msgstr ""
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__image_small
+msgid "Image small"
+msgstr ""
+
+#. module: gym_weighings
+#: selection:gym.weighing,measurement_method:0
+msgid "Impedance"
+msgstr "Impedancia"
+
+#. module: gym_weighings
+#: model_terms:ir.ui.view,arch_db:gym_weighings.gym_event_view_form
+#: model_terms:ir.ui.view,arch_db:gym_weighings.gym_weighing_view_form
+msgid "Impedance Scale"
+msgstr "Báscula de impedancia"
+
+#. module: gym_weighings
+#: selection:gym.weighing,measurement_method:0
+msgid "InBody"
+msgstr "InBody"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_event__measurement_method
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__measurement_method
+msgid "Measurement Method"
+msgstr "Método de medición"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_event__muscle_mass
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__muscle_mass
+msgid "Muscle Mass"
+msgstr "Masa muscular"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__partner_id
+msgid "Partner"
+msgstr "Contacto"
+
+#. module: gym_weighings
+#: model:ir.actions.server,name:gym_weighings.gym_weighing_progress_action_server
+#: model:ir.ui.menu,name:gym_weighings.progress_menu
+msgid "Progress"
+msgstr "Progreso"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_event__proteins
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__proteins
+msgid "Proteins"
+msgstr "Proteinas"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_event__shoulder_skinfold
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__shoulder_skinfold
+msgid "Shoulder"
+msgstr "Espalda"
+
+#. module: gym_weighings
+#: selection:gym.weighing,measurement_method:0
+#: model_terms:ir.ui.view,arch_db:gym_weighings.gym_event_view_form
+#: model_terms:ir.ui.view,arch_db:gym_weighings.gym_weighing_view_form
+msgid "Skin Fold"
+msgstr "Pliegues"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_event__subillacres_skinfold
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__subillacres_skinfold
+msgid "Subillacres"
+msgstr ""
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_event__tricep_skinfold
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__tricep_skinfold
+msgid "Triceps"
+msgstr "Triceps"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_event__type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_event__visceral_fat
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__visceral_fat
+msgid "Visceral Fat"
+msgstr "Grasa visceral"
+
+#. module: gym_weighings
+#: selection:gym.event,type:0
+msgid "WEIGHING"
+msgstr "PESAJE"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_event__water_percentage
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__water_percentage
+msgid "Water Percentaje"
+msgstr "Porcentaje de agua"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_event__weighing_id
+#: model_terms:ir.ui.view,arch_db:gym_weighings.gym_weighing_view_graph
+msgid "Weighing"
+msgstr "Pesaje"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_res_partner__weighing_count
+#: model:ir.model.fields,field_description:gym_weighings.field_res_users__weighing_count
+msgid "Weighing Count"
+msgstr "Número de pesajes"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_res_partner__weighing_ids
+#: model:ir.model.fields,field_description:gym_weighings.field_res_users__weighing_ids
+#: model_terms:ir.ui.view,arch_db:gym_weighings.res_form_view_form
+msgid "Weighings"
+msgstr "Pesajes"
+
+#. module: gym_weighings
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_event__weight
+#: model:ir.model.fields,field_description:gym_weighings.field_gym_weighing__weight
+#: model_terms:ir.ui.view,arch_db:gym_weighings.gym_event_view_form
+#: model_terms:ir.ui.view,arch_db:gym_weighings.gym_weighing_view_form
+msgid "Weight"
+msgstr "Peso"
+
+#. module: gym_weighings
+#: model:ir.model,name:gym_weighings.model_gym_event
+msgid "gym.event"
+msgstr ""
+
+#. module: gym_weighings
+#: model:ir.model,name:gym_weighings.model_gym_weighing
+msgid "gym.weighing"
+msgstr ""
+

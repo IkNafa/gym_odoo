@@ -1,0 +1,201 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* gym_surveys
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-14 10:13+0000\n"
+"PO-Revision-Date: 2021-06-14 10:13+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: gym_surveys
+#: model_terms:ir.ui.view,arch_db:gym_surveys.gym_survey_view_kanban
+msgid "<span class=\"o_label\">Answers</span>"
+msgstr "<span class=\"o_label\">Respuestas</span>"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question_answer__answer
+msgid "Answer"
+msgstr "Respuesta"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey__answer_count
+msgid "Answer Count"
+msgstr "Número de respuestas"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question__answer_ids
+msgid "Answers"
+msgstr "Respuestas"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey__client_id
+msgid "Client"
+msgstr "Cliente"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey__create_uid
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_answers_wizard__create_uid
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question__create_uid
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question_answer__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey__create_date
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_answers_wizard__create_date
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question__create_date
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question_answer__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: gym_surveys
+#: selection:gym.survey,type:0
+msgid "Daily"
+msgstr "Diaria"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question_answer__datetime
+msgid "Datetime"
+msgstr "Fecha"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey__display_name
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_answers_wizard__display_name
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question__display_name
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question_answer__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey__id
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_answers_wizard__id
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question__id
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question_answer__id
+msgid "ID"
+msgstr ""
+
+#. module: gym_surveys
+#: selection:gym.survey,type:0
+msgid "Initial"
+msgstr "Inicial"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey__last_answer
+msgid "Last Answer"
+msgstr "Última respuesta"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey____last_update
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_answers_wizard____last_update
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question____last_update
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question_answer____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey__write_uid
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_answers_wizard__write_uid
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question__write_uid
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question_answer__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey__write_date
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_answers_wizard__write_date
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question__write_date
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question_answer__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey__name
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey__partner_id
+msgid "Partner"
+msgstr "Usuario"
+
+#. module: gym_surveys
+#: model:ir.ui.menu,name:gym_surveys.gym_pending_survey_menu
+msgid "Pending surveys"
+msgstr "Encuestas pendientes"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question_answer__question_id
+msgid "Question"
+msgstr "Pregunta"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey__question_count
+msgid "Question Count"
+msgstr "Número de preguntas"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey__question_json
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_answers_wizard__question_json
+msgid "Question Json"
+msgstr ""
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey__question_ids
+#: model_terms:ir.ui.view,arch_db:gym_surveys.gym_survey_view_form
+msgid "Questions"
+msgstr "Preguntas"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question__required
+msgid "Required"
+msgstr "Requerido"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_answers_wizard__survey_id
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey_question__survey_id
+msgid "Survey"
+msgstr "Encuesta"
+
+#. module: gym_surveys
+#: code:addons/gym_surveys/models/gym_survey.py:83
+#: model:ir.actions.act_window,name:gym_surveys.gym_survey_action
+#: model:ir.actions.server,name:gym_surveys.gym_survey_pending_action_server
+#: model:ir.ui.menu,name:gym_surveys.gym_survey_menu
+#, python-format
+msgid "Surveys"
+msgstr "Encuestas"
+
+#. module: gym_surveys
+#: model:ir.model.fields,field_description:gym_surveys.field_gym_survey__type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: gym_surveys
+#: model:ir.model,name:gym_surveys.model_gym_survey
+msgid "gym.survey"
+msgstr ""
+
+#. module: gym_surveys
+#: model:ir.model,name:gym_surveys.model_gym_survey_answers_wizard
+msgid "gym.survey.answers.wizard"
+msgstr ""
+
+#. module: gym_surveys
+#: model:ir.model,name:gym_surveys.model_gym_survey_question
+msgid "gym.survey.question"
+msgstr ""
+
+#. module: gym_surveys
+#: model:ir.model,name:gym_surveys.model_gym_survey_question_answer
+msgid "gym.survey.question.answer"
+msgstr ""
+

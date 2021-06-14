@@ -253,27 +253,27 @@
 
         <menuitem
             id="res_partner_trainers_menu"
-            name="My Trainers"
+            name="Trainers"
             action="res_partner_trainers_action_server"
             groups="gym_base.group_gym_individual"
-            parent="gym_base.you_root_menu"
-            sequence="98"/>
+            parent="gym_base.me_social_menu"
+            sequence="10"/>
 
         <menuitem
             id="res_partner_clients_menu"
-            name="My clients"
+            name="Clients"
             action="res_partner_clients_action_server"
             groups="gym_base.group_gym_trainer,gym_base.group_gym_club"
-            parent="gym_base.you_root_menu"
-            sequence="99"/>
+            parent="gym_base.me_social_menu"
+            sequence="20"/>
 
         <menuitem
             id="res_partner_employees_menu"
-            name="My employees"
+            name="Employees"
             action="res_partner_employees_action_server"
             groups="gym_base.group_gym_company"
-            parent="gym_base.you_root_menu"
-            sequence="99"/>
+            parent="gym_base.me_social_menu"
+            sequence="10"/>
 
         <menuitem
             id="res_partner_menu"
@@ -285,7 +285,7 @@
         <menuitem
             id="profile_menu"
             name="Profile"
-            parent="gym_base.you_root_menu"
+            parent="gym_base.me_root_menu"
             action="res_partner_profile_action_server"
             sequence="1"/>
     

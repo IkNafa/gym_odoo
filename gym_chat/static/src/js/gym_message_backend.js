@@ -14,6 +14,8 @@ odoo.define('gym_chat.gym_message_backend', function (require) {
         events: {
             'click .send': 'send_message',
             'click .chat_user': 'change_active_user',
+            'keydown .chat-text': 'key_send_message',
+            'click .btn_list': 'open_view_list',
         },
         init: function (parent, action) {
             this.action = action;
@@ -48,16 +50,18 @@ odoo.define('gym_chat.gym_message_backend', function (require) {
             this.set_html();
 
             this.get_user_name();
-            this.chat = this.$('.chat')[0]
+            this.chat = this.$('.chat')[0];
+            this.friend_list = this.$(".friend-list")[0];
 
+            this.load_partners();
+
+            var input = this.$(".chat-text")[0];
             if(this.active_user){
+                input.focus();
                 this.load_messages();
             }else{
-                var input = this.$(".chat-text")[0];
                 input.disabled= true;
             }
-
-            this.$(`li[name=${this.active_user}]`).addClass("active")
 
             return this._super();
         },
@@ -140,6 +144,20 @@ odoo.define('gym_chat.gym_message_backend', function (require) {
             currentTarget.classList.add("active");
             this.start();
         },
+        load_partners: function(){
+            var self = this;
+
+            rpc.query({
+                model: 'report.gym.message.report',
+                method: 'get_partner_ids',
+                args: [[], []],
+            }).then(function (result) {
+                for(var partner of result){
+                    self.add_partner(partner);
+                }
+            });
+        },
+
         load_messages: function(){
             var domain = ['|',['to_id','=',this.active_user],['from_id','=',this.active_user]]
             var fields = ['datetime','to_name','from_name','message']
@@ -171,6 +189,49 @@ odoo.define('gym_chat.gym_message_backend', function (require) {
                     </p>
                 </div>
             </li>` + this.chat.innerHTML
+        },
+
+        key_send_message: function(ev){
+            var keycode = ev.keyCode;
+            if(keycode == 13){
+                this.send_message()
+            }
+        },
+
+        add_partner: function(partner){
+            var innerHTML = "";
+            innerHTML += `
+            <li class="chat_user ${this.active_user==partner.partner_id? "active":""}" name=${partner.partner_id}">
+                <a class="clearfix">
+                    <img src=${partner.image}  alt="" class="img-circle"/>
+                    <div class="friend-name">	
+                        <strong>${partner.name}</strong>
+                    </div>`;
+            if(partner.message != ""){
+                innerHTML += `
+                <div class="last-message text-muted">${partner.message}</div>
+                <small class="time text-muted">${partner.relative_datetime}</small>
+                <small class="chat-alert text-muted">`;
+                if(partner.mine == true){
+                    innerHTML += `<i class="fa fa-check"></i>`;
+                }else{
+                    innerHTML += `<i class="fa fa-reply"></i>`;
+                }
+                innerHTML += `</small>`;
+            }
+            innerHTML += `</a></li>`;
+
+            this.friend_list.innerHTML += innerHTML;
+        },
+
+        open_view_list: function(){
+            return this.do_action({
+                name: 'Chat',
+                type: 'ir.actions.act_window',
+                res_model: "gym.message",
+                views: [[false,'list']],
+                target: 'current',
+            });
         }
     });
 

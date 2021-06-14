@@ -20,9 +20,4 @@
 
         'views/gym_message_views.xml',
     ],
-    'demo': [
-        ''
-    ],
-    'auto_install': True,
-    'application': True,
 }

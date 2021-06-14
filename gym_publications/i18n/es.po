@@ -1,0 +1,408 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* gym_publications
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-14 10:16+0000\n"
+"PO-Revision-Date: 2021-06-14 10:16+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__bmi
+msgid "BMI"
+msgstr "IMC"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__basal_metabolism
+msgid "Basal Metabolism"
+msgstr "Metabolismo basal"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__bicep_skinfold
+msgid "Biceps"
+msgstr "Biceps"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__body_fat
+msgid "Body Fat"
+msgstr "Grasa corporal"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__bone_mass
+msgid "Bone Mass"
+msgstr "Masa ósea"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__workout_client_id
+msgid "Client"
+msgstr "Cliente"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__club_id
+msgid "Club"
+msgstr "Club"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__comment_ids
+msgid "Comments"
+msgstr "Comentarios"
+
+#. module: gym_publications
+#: model:ir.model,name:gym_publications.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__create_uid
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__workout_partner_id
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_comment__create_uid
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise__create_uid
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise_set__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__create_date
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_comment__create_date
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise__create_date
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise_set__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_comment__datetime
+msgid "Date"
+msgstr "Fecha"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__datetime
+msgid "Datetime"
+msgstr "Fecha"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise__description
+#: model_terms:ir.ui.view,arch_db:gym_publications.gym_publication_exercise_view_form
+msgid "Description"
+msgstr "Descripción"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__display_name
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_comment__display_name
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise__display_name
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise_set__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise__exercise_id
+msgid "Exercise"
+msgstr "Ejercicio"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__workout_exercise_ids
+#: model_terms:ir.ui.view,arch_db:gym_publications.gym_publication_view_form
+msgid "Exercises"
+msgstr "Ejercicios"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__has_like
+msgid "Has Like"
+msgstr ""
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__height
+msgid "Height"
+msgstr "Altura"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__id
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_comment__id
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise__id
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise_set__id
+msgid "ID"
+msgstr ""
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__image
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise__image
+msgid "Image"
+msgstr "Imagen"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise__image_medium
+msgid "Image medium"
+msgstr ""
+
+#. module: gym_publications
+#: model_terms:ir.ui.view,arch_db:gym_publications.gym_publication_view_form
+msgid "Impedance Scale"
+msgstr "Báscula de impedancia"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication____last_update
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_comment____last_update
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise____last_update
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise_set____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__write_uid
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_comment__write_uid
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise__write_uid
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise_set__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__write_date
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_comment__write_date
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise__write_date
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise_set__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: gym_publications
+#: model_terms:ir.ui.view,arch_db:gym_publications.gym_publication_view_form
+msgid "Like"
+msgstr "Me gusta"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__liked_partner_ids
+msgid "Liked Partner"
+msgstr ""
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__liked_partner_count
+msgid "Liked Partner Count"
+msgstr ""
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_res_partner__liked_publication_ids
+#: model:ir.model.fields,field_description:gym_publications.field_res_users__liked_publication_ids
+msgid "Liked Publication"
+msgstr ""
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__measurement_method
+msgid "Measurement Method"
+msgstr "Método de medición"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_comment__message
+msgid "Message"
+msgstr "Mensaje"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__muscle_mass
+msgid "Muscle Mass"
+msgstr "Masa muscular"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: gym_publications
+#: selection:gym.event,type:0
+msgid "PUBLICATION"
+msgstr "PUBLICACIÓN"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__partner_id
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_comment__partner_id
+msgid "Partner"
+msgstr "Usuario"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__proteins
+msgid "Proteins"
+msgstr "Proteinas"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_event__publication_id
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_comment__publication_id
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise__publication_id
+msgid "Publication"
+msgstr "Publicación"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__publication_exercise_ids
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise_set__publication_exercise_id
+msgid "Publication Exercise"
+msgstr ""
+
+#. module: gym_publications
+#: model:ir.actions.act_window,name:gym_publications.gym_publication_action
+#: model:ir.ui.menu,name:gym_publications.gym_publication_menu
+msgid "Publications"
+msgstr "Publicaciones"
+
+#. module: gym_publications
+#: model_terms:ir.ui.view,arch_db:gym_publications.gym_weighing_view_form
+#: model_terms:ir.ui.view,arch_db:gym_publications.gym_workout_view_form
+msgid "Publish"
+msgstr "Publicar"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise_set__reps
+msgid "Reps"
+msgstr "Reps"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise_set__rest_time
+msgid "Rest Time"
+msgstr "Tiempo de descanso"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise__sequence
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise_set__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise__set_ids
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise__set_str
+#: model_terms:ir.ui.view,arch_db:gym_publications.gym_publication_exercise_view_form
+msgid "Sets"
+msgstr "Sets"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__shoulder_skinfold
+msgid "Shoulder"
+msgstr "Espalda"
+
+#. module: gym_publications
+#: model_terms:ir.ui.view,arch_db:gym_publications.gym_publication_view_form
+msgid "Skin Fold"
+msgstr "Pliegues"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__subillacres_skinfold
+msgid "Subillacres"
+msgstr ""
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_event__publication_title
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__title
+#: model_terms:ir.ui.view,arch_db:gym_publications.gym_publication_view_form
+msgid "Title"
+msgstr "Título"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__tricep_skinfold
+msgid "Triceps"
+msgstr "Triceps"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_event__type
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise__external_video
+msgid "URL"
+msgstr ""
+
+#. module: gym_publications
+#: model_terms:ir.ui.view,arch_db:gym_publications.gym_publication_view_form
+msgid "Unlike"
+msgstr "Ya no me gusta"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__visceral_fat
+msgid "Visceral Fat"
+msgstr "Grasa visceral"
+
+#. module: gym_publications
+#: selection:gym.event,type:0
+#: selection:gym.publication,type:0
+msgid "WEIGHING"
+msgstr "PESAJE"
+
+#. module: gym_publications
+#: selection:gym.event,type:0
+#: selection:gym.publication,type:0
+msgid "WORKOUT"
+msgstr "ENTRENAMIENTO"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__water_percentage
+msgid "Water Percentaje"
+msgstr "Porcentaje de agua"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__weighing_id
+msgid "Weighing"
+msgstr "Pesaje"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__weight
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise_set__weight
+msgid "Weight"
+msgstr "Peso"
+
+#. module: gym_publications
+#: model_terms:ir.ui.view,arch_db:gym_publications.gym_publication_view_form
+msgid "Where?"
+msgstr "¿Donde?"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication_exercise_set__work_time
+msgid "Work Time"
+msgstr "Tiempo de trabajo"
+
+#. module: gym_publications
+#: model:ir.model.fields,field_description:gym_publications.field_gym_publication__workout_id
+msgid "Workout"
+msgstr "Rutinas"
+
+#. module: gym_publications
+#: model:ir.model,name:gym_publications.model_gym_event
+msgid "gym.event"
+msgstr ""
+
+#. module: gym_publications
+#: model:ir.model,name:gym_publications.model_gym_publication
+msgid "gym.publication"
+msgstr ""
+
+#. module: gym_publications
+#: model:ir.model,name:gym_publications.model_gym_publication_comment
+msgid "gym.publication.comment"
+msgstr ""
+
+#. module: gym_publications
+#: model:ir.model,name:gym_publications.model_gym_publication_exercise
+msgid "gym.publication.exercise"
+msgstr ""
+
+#. module: gym_publications
+#: model:ir.model,name:gym_publications.model_gym_publication_exercise_set
+msgid "gym.publication.exercise.set"
+msgstr ""
+
+#. module: gym_publications
+#: model:ir.model,name:gym_publications.model_gym_weighing
+msgid "gym.weighing"
+msgstr ""
+
+#. module: gym_publications
+#: model:ir.model,name:gym_publications.model_gym_workout
+msgid "gym.workout"
+msgstr ""
+
+#. module: gym_publications
+#: model_terms:ir.ui.view,arch_db:gym_publications.gym_publication_view_form
+msgid "likes"
+msgstr "me gusta"
+

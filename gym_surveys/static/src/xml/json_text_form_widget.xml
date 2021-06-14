@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<templates id="template" xml:space="preserve">
+     <t t-name="json_text_form_template">
+        <div class="body">
+            <form>
+                
+            </form> 
+            <input type="button" class="custom_form_button" value="Guardar"/>
+        </div>
+    </t>
+</templates> 

@@ -10,11 +10,35 @@
             groups="gym_base.group_gym_account"/>
 
         <menuitem
-            id="you_root_menu"
-            name="You"
+            id="me_root_menu"
+            name="Me"
             groups="gym_base.group_gym_account"
             parent="gym_base.gym_menu"
             sequence="99"/>
+
+        <menuitem
+            id="me_training_menu"
+            name="Training"
+            parent="me_root_menu"
+            sequence="10"/>
+
+        <menuitem
+            id="me_nutrition_menu"
+            name="Nutrition"
+            parent="me_root_menu"
+            sequence="20"/>
+        
+        <menuitem
+            id="me_survey_menu"
+            name="Survey"
+            parent="me_root_menu"
+            sequence="30"/>
+        
+        <menuitem
+            id="me_social_menu"
+            name="Social"
+            parent="me_root_menu"
+            sequence="40"/>
         
         <menuitem
             id="configuration_root_menu"

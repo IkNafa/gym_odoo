@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="gym_survey_view_kanban" model="ir.ui.view">
+            <field name="name">gym.survey.view.kanban</field>
+            <field name="model">gym.survey</field>
+            <field name="arch" type="xml">
+                <kanban class="oe_background_grey o_kanban_dashboard o_project_kanban o_emphasize_colors">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="type"/>
+                    <field name="answer_count"/>
+                    <field name="client_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_has_icon">
+                                <div class="o_project_kanban_main">
+                                    <div class="o_kanban_card_content">
+                                        <div class="o_kanban_primary_left">
+                                        
+                                            <div class="o_primary">
+                                                <span><b><t t-esc="record.name.value"/></b></span>
+                                                <span t-if="record.partner_id.value and record.client_id.value">
+                                                    <strong><t t-esc="record.partner_id.value"/> --> <t t-esc="record.client_id.value"/></strong>
+                                                </span><br/>
+                                                <span t-if="record.type.value">
+                                                    <strong><t t-esc="record.type.value"/></strong>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="o_project_kanban_boxes">
+                                    <a class="o_project_kanban_box" name="openAnswers" type="object">
+                                        <div>
+                                            <span class="o_value"><t t-esc="record.answer_count.value"/></span>
+                                            <span class="o_label">Answers</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="gym_survey_view_form" model="ir.ui.view">
+            <field name="name">gym.survey.view.form</field>
+            <field name="model">gym.survey</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1><field name="name"/></h1>
+                            <div class="o_row">
+                                <field name="client_id" widget="res_partner_many2one" context="{'form_view_ref': 'gym_base.res_partner_view_form'}" options="{'no_create':True}" attrs="{'readonly':[('id','!=',False)]}"/>
+                            </div>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="id" invisible="1"/>
+                                <field name="partner_id" invisible="1"/>
+                                <field name="type"/>
+                            </group>
+                        </group>
+                        <field name="question_json" invisible="1"/>
+                        <field name="last_answer" invisible="1"/>
+                        <notebook>
+                            <page name="questions" string="Questions">
+                                <field name="question_ids" mode="tree">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="required"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="gym_survey_view_tree" model="ir.ui.view">
+            <field name="name">gym.survey.view.tree</field>
+            <field name="model">gym.survey</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="question_count"/>
+                    <button name="open_question_wizard" type="object" icon="fa-external-link"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="gym_survey_action" model="ir.actions.act_window">
+            <field name="name">Surveys</field>
+            <field name="res_model">gym.survey</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,form</field>
+        </record>
+
+        <record id="gym_survey_pending_action_server" model="ir.actions.server">
+            <field name="name">Surveys</field>
+            <field name="model_id" ref="model_gym_survey"/>
+            <field name="state">code</field>
+            <field name="code">action = model.open_pending_surveys()</field>
+        </record>
+
+        <menuitem
+            id="gym_survey_menu"
+            name="Surveys"
+            action="gym_survey_action"
+            groups="gym_base.group_gym_trainer"
+            parent="gym_base.me_survey_menu"
+            sequence="10"/>
+
+        <menuitem
+            id="gym_pending_survey_menu"
+            name="Pending surveys"
+            action="gym_survey_pending_action_server"
+            groups="gym_base.group_gym_individual"
+            parent="gym_base.me_survey_menu"
+            sequence="20"/>
+    
+    </data>
+    
+
+</odoo>

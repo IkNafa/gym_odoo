@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="gym_survey_question_answer_all_view_tree" model="ir.ui.view">
+            <field name="name">gym.survey.question.answer.view.tree</field>
+            <field name="model">gym.survey.question.answer</field>
+            <field name="arch" type="xml">
+                <tree create="false" delete="false">
+                    <field name="question_id"/>
+                    <field name="datetime"/>
+                    <field name="answer"/>
+                </tree>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

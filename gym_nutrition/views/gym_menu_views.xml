@@ -57,9 +57,9 @@
             
         <menuitem
             id="my_menus_menu"
-            name="My Menus"
+            name="Menus"
             action="gym_menu_my_action_server"
-            parent="gym_base.you_root_menu"
+            parent="gym_base.me_nutrition_menu"
             sequence="40"/>
     
     </data>

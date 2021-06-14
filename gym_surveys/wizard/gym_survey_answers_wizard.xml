@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    
+        <record id="custom_wizard_view_form" model="ir.ui.view">
+            <field name="name">gym.survey.answers.wizard.view.form</field>
+            <field name="model">gym.survey.answers.wizard</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <field name="survey_id" invisible="1"/>
+                    <field name="question_json" widget="json_text_form" options="{'active_id':'survey_id', 'target_field':'question_json'}"/>
+                    <footer></footer>
+                </form>
+            </field>
+        </record>
+    
+    </data>
+    
+
+</odoo>

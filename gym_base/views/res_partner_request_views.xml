@@ -15,7 +15,7 @@
     </record>
 
     <record id="res_partner_request_action_server" model="ir.actions.server">
-        <field name="name">My requests</field>
+        <field name="name">Requests</field>
         <field name="model_id" ref="model_res_partner_request"/>
         <field name="binding_model_id" ref="model_res_partner_request"/>
         <field name="state">code</field>
@@ -24,10 +24,10 @@
 
     <menuitem
         id="res_partner_request_menu"
-        name="My requests"
+        name="Requests"
         action="res_partner_request_action_server"
         groups="gym_base.group_gym_trainer,gym_base.group_gym_company"
-        parent="you_root_menu"
-        sequence="100"/>
+        parent="me_social_menu"
+        sequence="30"/>
 
 </odoo>
