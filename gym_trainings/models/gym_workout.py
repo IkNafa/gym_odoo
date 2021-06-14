@@ -28,6 +28,11 @@ class Workout(models.Model):
 
     event_ids = fields.One2many('gym.event','workout_id')
 
+    @api.onchange('partner_id')
+    def onchange_partner_id(self):
+        for record in self:
+            return {'domain': {'client_id': [('id', 'in', record.partner_id.client_ids.ids)]}}
+
     @api.depends('dayofweek_ids')
     def _compute_dayofweek_str(self):
         for record in self:
@@ -113,7 +118,7 @@ class Workout(models.Model):
                         'date_stop': date,
                         'type':'workout',
                         'workout_id': record.id,
-                        'partner_id': record.partner_id.id
+                        'partner_id': record.client_id.id if record.client_id else record.partner_id
                     })
 
                     date += timedelta(days=1)
