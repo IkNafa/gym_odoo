@@ -39,7 +39,7 @@
                         <div class="oe_title" attrs="{'invisible':[('type','=',False)]}">
                             <h1><field name="title" placeholder="Title"/></h1>
                             <div class="o_row">
-                                <field name="club_id" placeholder="Where?" options="{'no_create':True}" attrs="{'invisible':[('type','!=','workout')]}"/>
+                                <field name="club_id" placeholder="Where?" options="{'no_create':True}"/>
                             </div>
                         </div>
                         <group>
