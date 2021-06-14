@@ -19,6 +19,11 @@ class Menu(models.Model):
     carbohydrates = fields.Float(compute="_compute_carbohydrates")
     proteins = fields.Float(compute="_compute_proteins")
 
+    @api.onchange('partner_id')
+    def onchange_partner_id(self):
+        for record in self:
+            return {'domain': {'client_id': [('id', 'in', record.partner_id.client_ids.ids)]}}
+
     @api.depends('menu_day_ids')
     def _compute_calories(self):
         for record in self:

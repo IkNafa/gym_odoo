@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-14 10:16+0000\n"
-"PO-Revision-Date: 2021-06-14 10:16+0000\n"
+"POT-Creation-Date: 2021-06-14 15:25+0000\n"
+"PO-Revision-Date: 2021-06-14 15:25+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "Metabolismo basal"
 #. module: gym_publications
 #: model:ir.model.fields,field_description:gym_publications.field_gym_publication__bicep_skinfold
 msgid "Biceps"
-msgstr "Biceps"
+msgstr ""
 
 #. module: gym_publications
 #: model:ir.model.fields,field_description:gym_publications.field_gym_publication__body_fat
@@ -115,7 +115,7 @@ msgstr "Ejercicios"
 #. module: gym_publications
 #: model:ir.model.fields,field_description:gym_publications.field_gym_publication__has_like
 msgid "Has Like"
-msgstr ""
+msgstr "Tiene me gusta"
 
 #. module: gym_publications
 #: model:ir.model.fields,field_description:gym_publications.field_gym_publication__height
@@ -220,7 +220,7 @@ msgstr "PUBLICACIÓN"
 #: model:ir.model.fields,field_description:gym_publications.field_gym_publication__partner_id
 #: model:ir.model.fields,field_description:gym_publications.field_gym_publication_comment__partner_id
 msgid "Partner"
-msgstr "Usuario"
+msgstr "Empresa"
 
 #. module: gym_publications
 #: model:ir.model.fields,field_description:gym_publications.field_gym_publication__proteins
@@ -300,7 +300,7 @@ msgstr "Título"
 #. module: gym_publications
 #: model:ir.model.fields,field_description:gym_publications.field_gym_publication__tricep_skinfold
 msgid "Triceps"
-msgstr "Triceps"
+msgstr ""
 
 #. module: gym_publications
 #: model:ir.model.fields,field_description:gym_publications.field_gym_event__type
@@ -400,6 +400,11 @@ msgstr ""
 #: model:ir.model,name:gym_publications.model_gym_workout
 msgid "gym.workout"
 msgstr ""
+
+#. module: gym_publications
+#: model_terms:ir.ui.view,arch_db:gym_publications.gym_publication_view_kanban
+msgid "in"
+msgstr "en"
 
 #. module: gym_publications
 #: model_terms:ir.ui.view,arch_db:gym_publications.gym_publication_view_form

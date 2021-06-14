@@ -120,6 +120,7 @@
             name="Workouts"
             action="gym_workout_personal_action_server"
             parent="gym_base.me_training_menu"
+            groups="gym_base.group_gym_individual"
             sequence="20"/>
     
     </data>

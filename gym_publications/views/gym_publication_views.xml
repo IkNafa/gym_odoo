@@ -135,10 +135,11 @@
                                             <div class="o_primary">
                                                 <span><b><t t-esc="record.title.value"/></b></span>
                                                 <span t-if="record.partner_id.value">
-                                                    <strong><t t-esc="record.partner_id.value"/></strong>
-                                                </span>
-                                                <span t-if="record.club_id.value">
-                                                    <t t-esc="record.club_id.value"/>
+                                                    <strong><t t-esc="record.partner_id.value"/> 
+                                                    <t t-if="record.club_id.value"> 
+                                                        in <t t-esc="record.club_id.value"/>
+                                                    </t> 
+                                                    </strong>
                                                 </span>
                                             </div>
                                         </div>
